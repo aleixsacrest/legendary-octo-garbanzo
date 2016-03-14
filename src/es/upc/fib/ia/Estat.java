@@ -2,6 +2,8 @@ package es.upc.fib.ia;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import IA.DistFS.*;
+
 
 /**
  * Created by aleixsacrest on 08/03/2016.
