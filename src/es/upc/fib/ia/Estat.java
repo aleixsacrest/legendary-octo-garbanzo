@@ -1,7 +1,10 @@
 package es.upc.fib.ia;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.PriorityQueue;
+
 import IA.DistFS.*;
 
 /**
@@ -43,6 +46,12 @@ public class Estat {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void innitEqCarrega() {
+        Comparator<Integer[]> cmp = new ComparadorCarregar();
+        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.serv.size(), cmp);
+
     }
 
     public void setServidors(HashMap<Integer, HashSet<Integer>> s) {
