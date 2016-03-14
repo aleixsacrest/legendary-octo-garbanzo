@@ -9,4 +9,8 @@ import java.util.HashSet;
 public class Estat {
     private HashMap<Integer, HashSet<Integer>> servidors;
     private int[] peticions;
+
+    public Estat() {
+        servidors = new HashMap<Integer, HashSet<Integer>>();
+    }
 }
