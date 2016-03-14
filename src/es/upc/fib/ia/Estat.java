@@ -11,10 +11,38 @@ public class Estat {
     //TODO: public o privat
     public HashMap<Integer, HashSet<Integer>> servidors;
     public int[] peticions;
+    private Servers serv;
+    private Requests req;
 
-    public Estat() {
+    public Estat(Servers serv, Requests req) {
         servidors = new HashMap<Integer, HashSet<Integer>>();
-        //peticions = new int[]
+        //TODO: this.sevidors insertar tantes posicions com servidors
+        this.serv = serv;
+        this.req = req;
+        this.peticions = new int[this.req.size()];
+    }
+
+    public void innitMinTemps() {
+        int i;
+        for (i = 0; i < this.peticions.length; ++i) {
+            int[] pet = this.req.getRequest(i);
+            int min = -1;
+            int s = 0;
+            for (int candidat : this.serv.fileLocations(pet[1])) {
+                int trans = this.serv.tranmissionTime(candidat, pet[0]);
+                if (min == -1 || trans < min) {
+                    min = trans;
+                    s = candidat;
+                }
+            }
+            try {
+                if (s == 0) throw new Exception("no s'ha trobat cap servidor");
+                this.peticions[i] = s;
+                this.servidors.get(s).add(i);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void setServidors(HashMap<Integer, HashSet<Integer>> s) {
