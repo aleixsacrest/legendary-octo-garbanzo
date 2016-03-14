@@ -50,8 +50,20 @@ public class Estat {
 
     public void innitEqCarrega() {
         Comparator<Integer[]> cmp = new ComparadorCarregar();
+        //TODO: this.serv.size()??
         PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.serv.size(), cmp);
-
+        int i;
+        for (i = 0; i < this.peticions.length; ++i) {
+            for (Integer[] ii : ocupacio) {
+                //TODO: acutalitzarà bé la PriorityQueue?
+                if (this.serv.fileLocations(this.req.getRequest(i)[1]).contains(ii[0])) {
+                    ii[1] += this.serv.tranmissionTime(ii[0], this.req.getRequest(i)[0]);
+                    this.servidors.get(ii[0]).add(i);
+                    this.peticions[i] = ii[0];
+                    break;
+                }
+            }
+        }
     }
 
     public void setServidors(HashMap<Integer, HashSet<Integer>> s) {
