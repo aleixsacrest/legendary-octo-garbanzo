@@ -13,6 +13,10 @@ public class Estat {
     private Servers S;
     private Requests R;
 
+    public Estat() {
+        servidors = new HashMap<Integer, HashSet<Integer>>();
+    }
+
     public Estat(Servers S, Requests R) {
         servidors = new HashMap<Integer, HashSet<Integer>>();
         this.S = S;
