@@ -9,8 +9,8 @@ import IA.DistFS.*;
  */
 public class Estat {
     //TODO: public o privat / static?
-    public HashMap<Integer, HashSet<Integer>> servidors;
-    public int[] peticions;
+    private HashMap<Integer, HashSet<Integer>> servidors;
+    private int[] peticions;
     private Servers serv;
     private Requests req;
 
