@@ -8,28 +8,26 @@ import IA.DistFS.*;
  * Created by aleixsacrest on 08/03/2016.
  */
 public class Estat {
-    //TODO: public o privat / static?
     private HashMap<Integer, HashSet<Integer>> servidors;
     private int[] peticions;
-    private Servers serv;
-    private Requests req;
+    private Servers S;
+    private Requests R;
 
-    public Estat(Servers serv, Requests req) {
+    public Estat(Servers S, Requests R) {
         servidors = new HashMap<Integer, HashSet<Integer>>();
-        //TODO: this.sevidors insertar tantes posicions com servidors
-        this.serv = serv;
-        this.req = req;
-        this.peticions = new int[this.req.size()];
+        this.S = S;
+        this.R = R;
+        this.peticions = new int[this.R.size()];
     }
 
     public void initMinTemps() {
-        int i;
-        for (i = 0; i < this.peticions.length; ++i) {
-            int[] pet = this.req.getRequest(i);
+        for (int i = 0; i < this.peticions.length; ++i) {
+            int[] pet = this.R.getRequest(i);
             int min = -1;
             int s = 0;
-            for (int candidat : this.serv.fileLocations(pet[1])) {
-                int trans = this.serv.tranmissionTime(candidat, pet[0]);
+            for (int candidat : this.S.fileLocations(pet[1])) {
+                if (!this.servidors.containsKey(candidat)) this.servidors.put(candidat, new HashSet<Integer>());
+                int trans = this.S.tranmissionTime(candidat, pet[0]);
                 if (min == -1 || trans < min) {
                     min = trans;
                     s = candidat;
@@ -46,15 +44,18 @@ public class Estat {
     }
 
     public void initEqCarrega() {
+        omplirServidors();
+        for (int serv : this.servidors.keySet()) {
+            int[] o = {serv, this.servidors.get(serv).size()};
+        }
         Comparator<Integer[]> cmp = new ComparadorCarregar();
-        //TODO: this.serv.size()??
-        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.serv.size(), cmp);
-        int i;
-        for (i = 0; i < this.peticions.length; ++i) {
+        //TODO: this.S.size()??
+        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.S.size(), cmp);
+        for (int i = 0; i < this.peticions.length; ++i) {
             for (Integer[] ii : ocupacio) {
                 //TODO: acutalitzar� b� la PriorityQueue?
-                if (this.serv.fileLocations(this.req.getRequest(i)[1]).contains(ii[0])) {
-                    ii[1] += this.serv.tranmissionTime(ii[0], this.req.getRequest(i)[0]);
+                if (this.S.fileLocations(this.R.getRequest(i)[1]).contains(ii[0])) {
+                    ii[1] += this.S.tranmissionTime(ii[0], this.R.getRequest(i)[0]);
                     this.servidors.get(ii[0]).add(i);
                     this.peticions[i] = ii[0];
                     break;
@@ -65,12 +66,22 @@ public class Estat {
 
     public void initRandom() {
         Random rnd = new Random();
-        int i;
-        for (i = 0; i < this.peticions.length; ++i) {
-            int j = rnd.nextInt(this.serv.fileLocations(this.req.getRequest(i)[1]).size());
-            int s = (Integer) this.serv.fileLocations(this.req.getRequest(i)[1]).toArray()[j];
+        for (int i = 0; i < this.peticions.length; ++i) {
+            int j = rnd.nextInt(this.S.fileLocations(this.R.getRequest(i)[1]).size());
+            int s = (Integer) this.S.fileLocations(this.R.getRequest(i)[1]).toArray()[j];
+            if (!this.servidors.containsKey(s)) this.servidors.put(s, new HashSet<Integer>());
             this.servidors.get(s).add(i);
             this.peticions[i] = s;
+        }
+        if (this.S.size() != this.servidors.size()) omplirServidors();
+    }
+
+    private void omplirServidors() {
+        for (int i = 0; i < this.peticions.length; ++i) {
+            int [] req = this.R.getRequest(i);
+            for (int serv : this.S.fileLocations(req[1])) {
+                if (!this.servidors.containsKey(serv)) this.servidors.put(serv, new HashSet<Integer>());
+            }
         }
     }
 
