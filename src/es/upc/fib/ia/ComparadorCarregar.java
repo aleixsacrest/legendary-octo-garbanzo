@@ -3,7 +3,7 @@ package es.upc.fib.ia;
 import java.util.Comparator;
 
 /**
- * Created by Msacrest on 14/03/2016.
+ * Created by aleixsacrest on 14/03/2016.
  */
 public class ComparadorCarregar implements Comparator<Integer[]> {
 
