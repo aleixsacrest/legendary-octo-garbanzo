@@ -130,4 +130,8 @@ public class Estat {
         this.servidors.get(IDserv2).remove(IDpet2);
         this.servidors.get(IDserv2).add(IDpet1);
     }
+
+    public boolean isGoal() {
+        return false;
+    }
 }
