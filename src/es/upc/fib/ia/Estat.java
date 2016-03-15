@@ -1,9 +1,6 @@
 package es.upc.fib.ia;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.PriorityQueue;
+import java.util.*;
 
 import IA.DistFS.*;
 
@@ -63,6 +60,17 @@ public class Estat {
                     break;
                 }
             }
+        }
+    }
+
+    public void innitRandom() {
+        Random rnd = new Random();
+        int i;
+        for (i = 0; i < this.peticions.length; ++i) {
+            int j = rnd.nextInt(this.serv.fileLocations(this.req.getRequest(i)[1]).size());
+            int s = (Integer) this.serv.fileLocations(this.req.getRequest(i)[1]).toArray()[j];
+            this.servidors.get(s).add(i);
+            this.peticions[i] = s;
         }
     }
 
