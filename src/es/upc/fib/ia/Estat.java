@@ -8,7 +8,7 @@ import IA.DistFS.*;
  * Created by aleixsacrest on 08/03/2016.
  */
 public class Estat {
-    //TODO: public o privat
+    //TODO: public o privat / static?
     public HashMap<Integer, HashSet<Integer>> servidors;
     public int[] peticions;
     private Servers serv;
@@ -52,7 +52,7 @@ public class Estat {
         int i;
         for (i = 0; i < this.peticions.length; ++i) {
             for (Integer[] ii : ocupacio) {
-                //TODO: acutalitzarà bé la PriorityQueue?
+                //TODO: acutalitzarï¿½ bï¿½ la PriorityQueue?
                 if (this.serv.fileLocations(this.req.getRequest(i)[1]).contains(ii[0])) {
                     ii[1] += this.serv.tranmissionTime(ii[0], this.req.getRequest(i)[0]);
                     this.servidors.get(ii[0]).add(i);
