@@ -22,7 +22,7 @@ public class Estat {
         this.peticions = new int[this.req.size()];
     }
 
-    public void innitMinTemps() {
+    public void initMinTemps() {
         int i;
         for (i = 0; i < this.peticions.length; ++i) {
             int[] pet = this.req.getRequest(i);
@@ -45,7 +45,7 @@ public class Estat {
         }
     }
 
-    public void innitEqCarrega() {
+    public void initEqCarrega() {
         Comparator<Integer[]> cmp = new ComparadorCarregar();
         //TODO: this.serv.size()??
         PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.serv.size(), cmp);
@@ -63,7 +63,7 @@ public class Estat {
         }
     }
 
-    public void innitRandom() {
+    public void initRandom() {
         Random rnd = new Random();
         int i;
         for (i = 0; i < this.peticions.length; ++i) {
