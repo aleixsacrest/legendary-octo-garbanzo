@@ -10,6 +10,7 @@ import IA.DistFS.*;
 public class Estat {
     private HashMap<Integer, HashSet<Integer>> servidors;
     private int[] peticions;
+    //TODO: getters i setters:
     private Servers S;
     private Requests R;
 
