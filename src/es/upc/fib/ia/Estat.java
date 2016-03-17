@@ -10,7 +10,6 @@ import IA.DistFS.*;
 public class Estat {
     private HashMap<Integer, HashSet<Integer>> servidors;
     private int[] peticions;
-    //TODO: getters i setters:
     private Servers S;
     private Requests R;
 
@@ -113,6 +112,14 @@ public class Estat {
     public int getServei(int IDpet) {
         return this.peticions[IDpet];
     }
+
+    public void setS (Servers S) { this.S = S; }
+
+    public Servers getS () { return this.S; }
+
+    public void setR (Requests R) { this.R = R; }
+
+    public Requests getR () { return this.R; }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];

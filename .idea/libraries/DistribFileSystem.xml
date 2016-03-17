@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="DistribFileSystem">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib/DistribFileSystem" />
+      <root url="jar://$PROJECT_DIR$/lib/DistribFileSystem.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
