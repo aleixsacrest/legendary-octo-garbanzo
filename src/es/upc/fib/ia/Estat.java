@@ -1,8 +1,8 @@
 package es.upc.fib.ia;
 
-import java.util.*;
-
 import IA.DistFS.*;
+
+import java.util.*;
 
 /**
  * Created by aleixsacrest on 08/03/2016.
@@ -48,13 +48,14 @@ public class Estat {
     }
 
     public void initEqCarrega() {
-        omplirServidors();
-        for (int serv : this.servidors.keySet()) {
-            int[] o = {serv, this.servidors.get(serv).size()};
-        }
         Comparator<Integer[]> cmp = new ComparadorCarregar();
         //TODO: this.S.size()??
         PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.S.size(), cmp);
+        omplirServidors();
+        for (int serv : this.servidors.keySet()) {
+            Integer[] o = {serv, this.servidors.get(serv).size()};
+            ocupacio.add(o);
+        }
         for (int i = 0; i < this.peticions.length; ++i) {
             for (Integer[] ii : ocupacio) {
                 //TODO: acutalitzar� b� la PriorityQueue?
