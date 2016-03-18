@@ -7,9 +7,9 @@ import java.util.HashSet;
  */
 public class InfoServ {
     public HashSet<Integer> p;
-    public double temps;
+    public Integer temps;
 
-    public InfoServ(HashSet<Integer> s, double d) {
+    public InfoServ(HashSet<Integer> s, Integer d) {
         this.p = s;
         this.temps = d;
     }

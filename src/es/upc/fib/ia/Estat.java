@@ -1,6 +1,8 @@
 package es.upc.fib.ia;
 
 import IA.DistFS.*;
+import com.sun.xml.internal.bind.v2.model.core.ID;
+import com.sun.xml.internal.fastinfoset.algorithm.IntegerEncodingAlgorithm;
 
 import java.util.*;
 
@@ -59,18 +61,17 @@ public class Estat {
 
     public void initEqCarrega() {
         Comparator<Integer[]> cmp = new ComparadorCarregar();
-        //TODO: this.S.size()??
         //PriorityQueue<Integer[]> ocu = new PriorityQueue<Integer[]>(this.S.size(), cmp);
         ArrayList<Integer[]> ocupacio = new ArrayList<Integer[]>();
         omplirServidors();
+        //TODO: fer llista amb temps
         for (int serv : this.servidors.keySet()) {
-            Integer[] o = {serv, this.servidors.get(serv).p.size()};
+            Integer[] o = {serv, this.servidors.get(serv).temps};
             //ocu.add(o);
             ocupacio.add(o);
         }
         for (int i = 0; i < this.peticions.length; ++i) {
             for (Integer[] ii : ocupacio) {
-                //TODO: acutalitzar� b� la PriorityQueue?
                 if (this.S.fileLocations(this.R.getRequest(i)[1]).contains(ii[0])) {
                     Integer ttemps = this.S.tranmissionTime(ii[0], this.R.getRequest(i)[0]);
                     ii[1] += ttemps;
@@ -153,7 +154,9 @@ public class Estat {
         //TODO: restar transmissio temps a actual i sumarili a la nova
         int IDantic = this.peticions[IDpeticio];
         this.servidors.get(IDantic).p.remove(IDpeticio);
+        this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
         this.servidors.get(IDnou).p.add(IDpeticio);
+        this.servidors.get(IDnou).temps += this.S.tranmissionTime(IDnou, this.R.getRequest(IDpeticio)[0]);
     }
 
     public void intervanviarAssignacions(int IDpet1, int IDpet2) {
@@ -166,6 +169,11 @@ public class Estat {
         this.servidors.get(IDserv1).p.add(IDpet2);
         this.servidors.get(IDserv2).p.remove(IDpet2);
         this.servidors.get(IDserv2).p.add(IDpet1);
+
+        this.servidors.get(IDserv1).temps -= this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet1)[0]);
+        this.servidors.get(IDserv2).temps += this.S.tranmissionTime(IDserv2, this.R.getRequest(IDpet1)[0]);
+        this.servidors.get(IDserv2).temps -= this.S.tranmissionTime(IDserv2, this.R.getRequest(IDpet2)[0]);
+        this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
     //TODO: classe Estat / HeuristicFunction
