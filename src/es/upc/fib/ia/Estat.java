@@ -153,7 +153,26 @@ public class Estat {
         this.servidors.get(IDserv2).add(IDpet1);
     }
 
-    public boolean isGoal() {
-        return false;
+    //TODO: classe Estat / HeuristicFunction
+    public double factorDeCarrega() {
+        double ret = 0;
+        double avg = 0;
+        for (HashSet<Integer> s : this.servidors.values()) {
+            avg += s.size();
+        }
+        avg /= this.servidors.size();
+        for (HashSet<Integer> s : this.servidors.values()) {
+            ret += Math.pow((s.size()-avg), 2);
+        }
+        ret /= this.servidors.size();
+        return ret;
+    }
+
+    public double tempsTransmissio() {
+        double ret = 0;
+        for (int i = 0; i < this.peticions.length; ++i) {
+            ret += this.S.tranmissionTime(this.peticions[i], this.R.getRequest(i)[0]);
+        }
+        return ret;
     }
 }

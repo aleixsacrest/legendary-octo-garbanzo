@@ -5,8 +5,10 @@ import es.upc.fib.ia.ComparadorCarregar;
 import java.lang.reflect.Array;
 import java.util.*;
 
+import IA.DistFS.*;
+
 /**
- * Created by Msacrest on 16/03/2016.
+ * Created by aleixsacrest on 16/03/2016.
  */
 public class DriverEstat {
     public static void main(String[] args) {
@@ -27,9 +29,10 @@ public class DriverEstat {
         aa.add(b);
         aa.add(c);
         Collections.sort(aa, cmp);
-        for (Integer[] i : ocupacio) {
+        for (Integer[] i : aa) {
             System.out.print(i[0]);
             System.out.println(i[1]);
         }
+        testDistFS test = new testDistFS();
     }
 }
