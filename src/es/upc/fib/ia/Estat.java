@@ -18,7 +18,7 @@ public class Estat {
     }
 
     public Estat(Estat state) {
-        servidors = new HashMap<Integer, HashSet<Integer>>(state.getServidors());
+        servidors = new HashMap<Integer, InfoServ>(state.getServidors());
         this.S = state.getS();
         this.R = state.getR();
         this.peticions = new int[this.R.size()];
