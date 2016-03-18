@@ -5,5 +5,6 @@ package es.upc.fib.ia;
  */
 public class HeuristicFunction {
 
+    public int getHeuristicValue(Estat state) { return 0; }
 
 }

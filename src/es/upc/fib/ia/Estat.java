@@ -17,6 +17,15 @@ public class Estat {
         servidors = new HashMap<Integer, HashSet<Integer>>();
     }
 
+    public Estat(Estat state) {
+        servidors = new HashMap<Integer, HashSet<Integer>>(state.getServidors());
+        this.S = state.getS();
+        this.R = state.getR();
+        this.peticions = new int[this.R.size()];
+        for (int i = 0; i < peticions.length; ++i)
+            this.peticions[i] = state.getPeticions()[i];
+    }
+
     public Estat(Servers S, Requests R) {
         servidors = new HashMap<Integer, HashSet<Integer>>();
         this.S = S;
@@ -124,6 +133,8 @@ public class Estat {
     public void setR (Requests R) { this.R = R; }
 
     public Requests getR () { return this.R; }
+
+    public Set<Integer> servidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
