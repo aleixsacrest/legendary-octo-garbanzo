@@ -12,7 +12,7 @@ public class DriverEstat {
     public static void main(String[] args) {
         System.out.println("Hola miro");
         Comparator<Integer[]> cmp = new ComparadorCarregar();
-        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(1, cmp);
+        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(3, cmp);
         //TODO: priority o ArrayList
         ArrayList<Integer[]> aa = new ArrayList<Integer[]>();
         Integer[] a = {1,3};
@@ -27,7 +27,7 @@ public class DriverEstat {
         aa.add(b);
         aa.add(c);
         Collections.sort(aa, cmp);
-        for (Integer[] i : aa) {
+        for (Integer[] i : ocupacio) {
             System.out.print(i[0]);
             System.out.println(i[1]);
         }

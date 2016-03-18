@@ -50,10 +50,12 @@ public class Estat {
     public void initEqCarrega() {
         Comparator<Integer[]> cmp = new ComparadorCarregar();
         //TODO: this.S.size()??
-        PriorityQueue<Integer[]> ocupacio = new PriorityQueue<Integer[]>(this.S.size(), cmp);
+        //PriorityQueue<Integer[]> ocu = new PriorityQueue<Integer[]>(this.S.size(), cmp);
+        ArrayList<Integer[]> ocupacio = new ArrayList<Integer[]>();
         omplirServidors();
         for (int serv : this.servidors.keySet()) {
             Integer[] o = {serv, this.servidors.get(serv).size()};
+            //ocu.add(o);
             ocupacio.add(o);
         }
         for (int i = 0; i < this.peticions.length; ++i) {
@@ -66,6 +68,7 @@ public class Estat {
                     break;
                 }
             }
+            Collections.sort(ocupacio, cmp);
         }
     }
 
