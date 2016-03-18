@@ -5,17 +5,7 @@ package es.upc.fib.ia;
  */
 
 public class GoalTest {
-    //TODO: decidir quin tipus de funcio usar
-    Estat goal = new Estat();
-
     public boolean isGoalState(Estat state) {
-        return state.equals(goal);
+        return false;
     }
-
-    /*
-    public boolean isGoalState (Estat state) {
-        return state.isGoal();
-    }
-    */
-
 }
