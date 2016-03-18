@@ -3,9 +3,13 @@ package es.upc.fib.ia.driver;
 import es.upc.fib.ia.ComparadorCarregar;
 
 import java.lang.reflect.Array;
+import java.security.KeyStore;
 import java.util.*;
 
 import IA.DistFS.*;
+import sun.font.CompositeGlyphMapper;
+
+import javax.swing.text.Position;
 
 /**
  * Created by aleixsacrest on 16/03/2016.
@@ -34,5 +38,6 @@ public class DriverEstat {
             System.out.println(i[1]);
         }
         testDistFS test = new testDistFS();
+
     }
 }
