@@ -15,6 +15,9 @@ public class Estat {
     private Servers S;
     private Requests R;
 
+    private double FdC0;    //valor pitjor de FdC = valor inicial
+    private double temps0;  //valor pitjor de temps = valor inicial
+
     public Estat() {
         servidors = new HashMap<Integer, InfoServ>();
     }
@@ -23,6 +26,8 @@ public class Estat {
         servidors = new HashMap<Integer, InfoServ>(state.getServidors());
         this.S = state.getS();
         this.R = state.getR();
+        this.FdC0 = state.getFdC0();
+        this.temps0 = state.getTemps0();
         this.peticions = new int[this.R.size()];
         for (int i = 0; i < peticions.length; ++i)
             this.peticions[i] = state.getPeticions()[i];
@@ -57,6 +62,8 @@ public class Estat {
                 System.out.println(e.getMessage());
             }
         }
+        FdC0 = factorDeCarrega();
+        temps0 = tempsTransmissio();
     }
 
     public void initEqCarrega() {
@@ -83,6 +90,8 @@ public class Estat {
             }
             Collections.sort(ocupacio, cmp);
         }
+        FdC0 = factorDeCarrega();
+        temps0 = tempsTransmissio();
     }
 
     public void initRandom() {
@@ -96,6 +105,8 @@ public class Estat {
             this.peticions[i] = loc;
         }
         if (this.S.size() != this.servidors.size()) omplirServidors();
+        FdC0 = factorDeCarrega();
+        temps0 = tempsTransmissio();
     }
 
     private void omplirServidors() {
@@ -148,6 +159,10 @@ public class Estat {
 
     public Requests getR () { return this.R; }
 
+    public double getFdC0() { return this.FdC0; }
+
+    public double getTemps0() { return this.temps0; }
+
     public Set<Integer> servidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
@@ -176,19 +191,37 @@ public class Estat {
         this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
-    //TODO: classe Estat / HeuristicFunction
-    public double factorDeCarrega() {
-        double ret = 0;
-        double avg = 0;
+    public double getAvg(){
+        double avg = 0.;
         for (int serv : this.servidors.keySet()) {
             avg += this.servidors.get(serv).temps;
         }
         avg /= this.servidors.size();
+        return avg;
+    }
+
+    //TODO: classe Estat / HeuristicFunction
+    public double factorDeCarrega() {
+        double ret = 0;
+        double avg = getAvg();
+        /*for (int serv : this.servidors.keySet()) {
+            avg += this.servidors.get(serv).temps;
+        }
+        avg /= this.servidors.size();*/
         for (InfoServ inf : this.servidors.values()) {
             ret += Math.pow((inf.temps-avg), 2);
         }
         ret /= this.servidors.size();
         return ret;
+    }
+
+    public double getTempsPitjorSevidor() {
+        double temps = 0.;
+        for (int s : this.servidors.keySet()) {
+            if (temps < this.servidors.get(s).temps)
+                temps = this.servidors.get(s).temps;
+        }
+        return temps;
     }
 
     public double tempsTransmissio() {
