@@ -20,6 +20,7 @@ public class SuccessorFunction {
         for (int i = 0; i <= state.getPeticions().length; ++i) {
             for (int j : state.getServidorsArxiu(i)) {
                 Estat newState = new Estat(state);
+                //if (i != j)
                 newState.canviarAssignacio(i, j);
                 int hv = hf.getHeuristicValue(newState);
                 String S = "CANVI ASSIGNACIO " + i + " del Servidor " + state.getServei(i) + " al " + j;

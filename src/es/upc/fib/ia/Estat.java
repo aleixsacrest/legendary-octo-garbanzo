@@ -162,6 +162,7 @@ public class Estat {
 
     public double getTemps0() { return this.temps0; }
 
+    //TODO: el que arriba realment a la funcio quan es fa servir es l'ID de la peticio, s'ha de canviar la funcio
     public Set<Integer> getServidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
@@ -212,6 +213,7 @@ public class Estat {
         return ret;
     }
 
+    //TODO: pitjor = mitja temps de transmissio mes alta
     public double getTempsPitjorSevidor() {
         double temps = 0.;
         for (int s : this.servidors.keySet()) {
