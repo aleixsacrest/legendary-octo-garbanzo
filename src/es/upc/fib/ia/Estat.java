@@ -71,7 +71,6 @@ public class Estat {
         //PriorityQueue<Integer[]> ocu = new PriorityQueue<Integer[]>(this.S.size(), cmp);
         ArrayList<Integer[]> ocupacio = new ArrayList<Integer[]>();
         omplirServidors();
-        //TODO: fer llista amb temps
         for (int serv : this.servidors.keySet()) {
             Integer[] o = {serv, this.servidors.get(serv).temps};
             //ocu.add(o);
@@ -163,10 +162,9 @@ public class Estat {
 
     public double getTemps0() { return this.temps0; }
 
-    public Set<Integer> servidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
+    public Set<Integer> getServidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
-        //TODO: restar transmissio temps a actual i sumarili a la nova
         int IDantic = this.peticions[IDpeticio];
         this.servidors.get(IDantic).p.remove(IDpeticio);
         this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
@@ -175,7 +173,6 @@ public class Estat {
     }
 
     public void intervanviarAssignacions(int IDpet1, int IDpet2) {
-        //TODO: intercanviar temps de transmissio
         int IDserv1 = peticions[IDpet1];
         int IDserv2 = peticions[IDpet2];
         this.peticions[IDpet1] = IDserv2;

@@ -18,7 +18,7 @@ public class SuccessorFunction {
         HeuristicFunction hf = new HeuristicFunction();
 
         for (int i = 0; i <= state.getPeticions().length; ++i) {
-            for (int j : state.servidorsArxiu(i)) {
+            for (int j : state.getServidorsArxiu(i)) {
                 Estat newState = new Estat(state);
                 newState.canviarAssignacio(i, j);
                 int hv = hf.getHeuristicValue(newState);
