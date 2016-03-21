@@ -22,6 +22,7 @@ public class SuccessorFunction {
                 Estat newState = new Estat(state);
                 //if (i != j)
                 newState.canviarAssignacio(i, j);
+                //TODO: perque es fa servir?
                 int hv = hf.getHeuristicValue(newState);
                 String S = "CANVI ASSIGNACIO " + i + " del Servidor " + state.getServei(i) + " al " + j;
                 retVal.add(new Successor(S, newState));

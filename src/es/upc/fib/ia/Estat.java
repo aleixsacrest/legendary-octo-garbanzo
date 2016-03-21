@@ -162,8 +162,7 @@ public class Estat {
 
     public double getTemps0() { return this.temps0; }
 
-    //TODO: el que arriba realment a la funcio quan es fa servir es l'ID de la peticio, s'ha de canviar la funcio
-    public Set<Integer> getServidorsArxiu(int IDArxiu) { return this.S.fileLocations(IDArxiu); }
+    public Set<Integer> getServidorsArxiu(int IDpet) { return this.S.fileLocations(this.R.getRequest(IDpet)[1]); }
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
@@ -201,11 +200,12 @@ public class Estat {
     //TODO: classe Estat / HeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
-        double avg = getAvg();
-        /*for (int serv : this.servidors.keySet()) {
+        //double avg = getAvg();
+        double avg = 0;
+        for (int serv : this.servidors.keySet()) {
             avg += this.servidors.get(serv).temps;
         }
-        avg /= this.servidors.size();*/
+        avg /= this.servidors.size();
         for (InfoServ inf : this.servidors.values()) {
             ret += Math.pow((inf.temps-avg), 2);
         }
@@ -215,12 +215,15 @@ public class Estat {
 
     //TODO: pitjor = mitja temps de transmissio mes alta
     public double getTempsPitjorSevidor() {
-        double temps = 0.;
+        double mitjaTemps = -1.;
+        Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (temps < this.servidors.get(s).temps)
-                temps = this.servidors.get(s).temps;
+            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
+                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+                id = s;
+            }
         }
-        return temps;
+        return this.servidors.get(id).temps;
     }
 
     public double tempsTransmissio() {
