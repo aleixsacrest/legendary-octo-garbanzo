@@ -1,20 +1,27 @@
 package es.upc.fib.ia.driver;
 
-import es.upc.fib.ia.ComparadorCarregar;
+import IA.DistFS.Requests;
+import IA.DistFS.Servers;
+import es.upc.fib.ia.Estat;
+import es.upc.fib.ia.InfoServ;
 
-import java.lang.reflect.Array;
-import java.util.*;
-
-import IA.DistFS.*;
+import javax.sound.midi.MidiDevice;
+import java.util.HashMap;
 
 /**
  * Created by aleixsacrest on 16/03/2016.
  */
 public class DriverEstat {
     public static void main(String[] args) {
-        Requests req = new Requests(100, 4, 0);
-        //Servers serv = new Servers(5, 4, 0);
-        testDistFS test = new testDistFS();
-        System.out.println("out");
+        try {
+            Requests req = new Requests(200, 5, 1);
+            Servers serv = new Servers(50, 5, 1);
+            Estat e = new Estat(serv, req);
+            e.initRandom();
+            System.out.println(e.factorDeCarrega());
+            System.out.println("fin");
+        } catch (Exception e) {
+
+        }
     }
 }

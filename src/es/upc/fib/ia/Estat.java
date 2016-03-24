@@ -44,7 +44,7 @@ public class Estat {
         for (int i = 0; i < this.peticions.length; ++i) {
             int[] pet = this.R.getRequest(i);
             int min = -1;
-            int s = 0;
+            int s = -1;
             for (int candidat : this.S.fileLocations(pet[1])) {
                 if (!this.servidors.containsKey(candidat)) this.servidors.put(candidat, new InfoServ(new HashSet<Integer>(), 0));
                 int trans = this.S.tranmissionTime(candidat, pet[0]);
@@ -54,7 +54,7 @@ public class Estat {
                 }
             }
             try {
-                if (s == 0) throw new Exception("no s'ha trobat cap servidor");
+                if (s == -1) throw new Exception("no s'ha trobat cap servidor");
                 this.peticions[i] = s;
                 this.servidors.get(s).p.add(i);
                 this.servidors.get(s).temps += min;
