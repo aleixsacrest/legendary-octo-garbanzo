@@ -235,6 +235,7 @@ public class Estat {
     }
 
     public String toString() {
+        //aleixsacrest
         String ret = "";
         /*for (int s : this.servidors.keySet()) {
             ret += s + " " + this.servidors.get(s).p.size() + '\n';
