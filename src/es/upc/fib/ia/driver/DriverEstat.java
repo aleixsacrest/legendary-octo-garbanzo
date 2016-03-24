@@ -17,11 +17,10 @@ public class DriverEstat {
             Requests req = new Requests(200, 5, 1);
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
-            e.initRandom();
-            System.out.println(e.factorDeCarrega());
+            e.initMinTemps();
             System.out.println("fin");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }
