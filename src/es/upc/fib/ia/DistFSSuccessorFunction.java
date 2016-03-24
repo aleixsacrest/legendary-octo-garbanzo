@@ -1,6 +1,7 @@
 package es.upc.fib.ia;
 
 import es.upc.fib.ia.aima.search.framework.Successor;
+import es.upc.fib.ia.aima.search.framework.SuccessorFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,10 @@ import java.util.List;
 
 //TODO: nomes s'implementa l'operador de canviar assignacio + successorfunction x SA
 
-public class SuccessorFunction {
+public class DistFSSuccessorFunction implements SuccessorFunction {
 
-    List getSuccessors(Estat state){
+    public List getSuccessors(Object s){
+        Estat state = (Estat) s;
         ArrayList retVal = new ArrayList();
         DistFSHeuristicFunction hf = new DistFSHeuristicFunction();
 
@@ -23,7 +25,7 @@ public class SuccessorFunction {
                 //if (i != j)
                 newState.canviarAssignacio(i, j);
                 //TODO: perque es fa servir?
-                int hv = hf.getHeuristicValue(newState);
+                double hv = hf.getHeuristicValue(newState);
                 String S = "CANVI ASSIGNACIO " + i + " del Servidor " + state.getServei(i) + " al " + j;
                 retVal.add(new Successor(S, newState));
             }
