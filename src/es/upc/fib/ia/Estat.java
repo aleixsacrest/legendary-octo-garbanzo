@@ -239,8 +239,8 @@ public class Estat {
         /*for (int s : this.servidors.keySet()) {
             ret += s + " " + this.servidors.get(s).p.size() + '\n';
         }*/
-        ret += "\nfactor de carrega: " + this.factorDeCarrega() + '\n';
-        ret += "\ntemps pitjor servidor: " + this.getTempsPitjorSevidor() +'\n';
+        ret += "\nfactor de carrega: " + this.factorDeCarrega();
+        ret += "\ntemps pitjor servidor: " + this.getTempsPitjorSevidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
         return ret;
     }
