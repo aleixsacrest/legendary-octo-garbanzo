@@ -27,10 +27,10 @@ public class DistFSDemo extends Component {
             else if (ini == 1) e.initEqCarrega();
             else if (ini == 2) e.initRandom();
             else throw new Exception("error de selecció");
-            System.out.print("Estat inicial\n" + e);
+            System.out.print("Estat inicial" + e);
 
             DistFSHillClimbing(e);
-            System.out.print("Hill Climbing\n" + e);
+            System.out.print("\n\nHill Climbing" + e);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,9 +63,9 @@ public class DistFSDemo extends Component {
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
-            printActions(agent.getActions());
+            /*printActions(agent.getActions());
             System.out.println("---");
-            printInstrumentation(agent.getInstrumentation());
+            printInstrumentation(agent.getInstrumentation());*/
 
         } catch (Exception e) {
             e.printStackTrace();
