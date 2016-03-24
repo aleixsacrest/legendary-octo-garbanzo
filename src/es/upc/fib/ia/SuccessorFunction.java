@@ -15,7 +15,7 @@ public class SuccessorFunction {
 
     List getSuccessors(Estat state){
         ArrayList retVal = new ArrayList();
-        HeuristicFunction hf = new HeuristicFunction();
+        DistFSHeuristicFunction hf = new DistFSHeuristicFunction();
 
         for (int i = 0; i <= state.getPeticions().length; ++i) {
             for (int j : state.getServidorsArxiu(i)) {

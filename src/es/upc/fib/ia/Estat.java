@@ -197,7 +197,7 @@ public class Estat {
         return avg;
     }
 
-    //TODO: classe Estat / HeuristicFunction
+    //TODO: classe Estat / DistFSHeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
         //double avg = getAvg();
