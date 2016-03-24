@@ -5,7 +5,6 @@ import es.upc.fib.ia.aima.search.framework.Problem;
 import es.upc.fib.ia.aima.search.framework.Search;
 import es.upc.fib.ia.aima.search.framework.SearchAgent;
 import es.upc.fib.ia.aima.search.informed.HillClimbingSearch;
-import es.upc.fib.ia.initchooser.initChooser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +20,6 @@ public class DistFSDemo extends Component {
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
 
-
-            /*JFrame ini = new initChooser();
-            ini.setVisible(true);
-            ini.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);*/
             int ini = inicialitzacio();
             if (ini == 0) {
                 e.initMinTemps();
@@ -32,8 +27,10 @@ public class DistFSDemo extends Component {
             else if (ini == 1) e.initEqCarrega();
             else if (ini == 2) e.initRandom();
             else throw new Exception("error de selecció");
+            System.out.print("Estat inicial\n" + e);
 
             DistFSHillClimbing(e);
+            System.out.print("Hill Climbing\n" + e);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,6 +64,7 @@ public class DistFSDemo extends Component {
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
             printActions(agent.getActions());
+            System.out.println("---");
             printInstrumentation(agent.getInstrumentation());
 
         } catch (Exception e) {
