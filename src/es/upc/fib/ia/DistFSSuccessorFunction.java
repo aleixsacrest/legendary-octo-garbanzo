@@ -26,7 +26,7 @@ public class DistFSSuccessorFunction implements SuccessorFunction {
                 newState.canviarAssignacio(i, j);
                 //TODO: perque es fa servir?
                 double hv = hf.getHeuristicValue(newState);
-                String S = "CANVI ASSIGNACIO " + i + " del Servidor " + state.getServei(i) + " al " + j;
+                String S = "CANVI ASSIGNACIO " + i + ": del Servidor " + state.getServei(i) + " al " + j + " amb cost: " + hv;
                 retVal.add(new Successor(S, newState));
             }
         }
