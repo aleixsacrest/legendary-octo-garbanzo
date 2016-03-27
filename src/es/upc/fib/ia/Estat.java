@@ -166,6 +166,7 @@ public class Estat {
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
+        this.peticions[IDpeticio] = IDnou;
         this.servidors.get(IDantic).p.remove(IDpeticio);
         this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
         this.servidors.get(IDnou).p.add(IDpeticio);
@@ -197,6 +198,14 @@ public class Estat {
         return avg;
     }
 
+    public double getSumaTemps() {
+        double suma = 0.;
+        for (int serv : this.servidors.keySet()) {
+            suma += this.servidors.get(serv).temps;
+        }
+        return suma;
+    }
+
     //TODO: classe Estat / DistFSHeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
@@ -215,14 +224,16 @@ public class Estat {
 
     //TODO: pitjor = mitja temps de transmissio mes alta
     public double getTempsPitjorSevidor() {
-        double mitjaTemps = -1.;
+        double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
-                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+            if (t == -1. || this.servidors.get(s).temps > t) {
+                if (this.servidors.get(s).p.size() == 0) t = 0;
+                else t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
                 id = s;
             }
         }
+        //TODO: return t??
         return this.servidors.get(id).temps;
     }
 
@@ -242,6 +253,7 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorSevidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
+        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
         return ret;
     }
 }

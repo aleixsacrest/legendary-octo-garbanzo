@@ -63,9 +63,9 @@ public class DistFSDemo extends Component {
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
-            /*printActions(agent.getActions());
+            printActions(agent.getActions());
             System.out.println("---");
-            printInstrumentation(agent.getInstrumentation());*/
+            printInstrumentation(agent.getInstrumentation());
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -29,11 +29,24 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //quan més proper sigui a 0, més valor tindrà l'heurístic
         //el maxim es quan la variancia es 0 --> hv_fdc = FdC0
         double hv_fdc = FdC0 - FdC;
+
+        //aleix
+        double hv_fdc_aleix = (FdC0 - FdC) / FdC0;
+        //if (hv_fdc_aleix < 0) hv_fdc_aleix = 0;
+
         //heuristic value temps:
         //mateix raonament que pel FdC
         double hv_temps = temps0 - temps;
+
+        //aleix
+        double hv_temps_aleix = (temps0 - temps) / temps0;
+        //if (hv_temps_aleix < 0) hv_temps_aleix = 0;
+
         //H es la funcio heuristica
         int H = (int) (hv_fdc + hv_temps);
+
+        //aleix
+        double H_aleix = (hv_fdc_aleix / 2) + (hv_temps_aleix / 2);
 
         double avg = state.getAvg();
         //heuristic value pitjorServidor
@@ -41,7 +54,15 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //voldra dir que estem satisfent la clausula a. Si es major al avg, restarà punts al valor de H, si es igual
         //no en sumara, i si es menor fara que sigui major
         double hv_pitjorServidor = avg - state.getTempsPitjorSevidor();
+
+        //aleix
+        double tot = state.getSumaTemps();
+        double hv_pitjorServidor_aleix = (tot - state.getTempsPitjorSevidor()) / tot;
+
         H += (int) hv_pitjorServidor; //si el temps del pitjor servidor es major a l'avg, donem menys puntuacio
+
+        //aleix
+        H_aleix = (H_aleix) + (hv_pitjorServidor_aleix);
 
         return H;
     }
