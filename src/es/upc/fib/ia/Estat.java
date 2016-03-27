@@ -102,6 +102,7 @@ public class Estat {
             this.servidors.get(loc).p.add(i);
             this.servidors.get(loc).temps += this.S.tranmissionTime(loc, this.R.getRequest(i)[0]);
             this.peticions[i] = loc;
+
         }
         if (this.S.size() != this.servidors.size()) omplirServidors();
         FdC0 = factorDeCarrega();

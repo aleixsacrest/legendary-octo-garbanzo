@@ -48,6 +48,7 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //aleix
         double H_aleix = (hv_fdc_aleix / 2) + (hv_temps_aleix / 2);
 
+
         double avg = state.getAvg();
         //heuristic value pitjorServidor
         //volem minimitzar el temps del pitjor servidor, per tant, quan més proper sigui al avg del temps dels altres millor,

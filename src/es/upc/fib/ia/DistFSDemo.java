@@ -29,6 +29,7 @@ public class DistFSDemo extends Component {
             else throw new Exception("error de selecció");
             System.out.print("Estat inicial" + e);
 
+
             DistFSHillClimbing(e);
             System.out.print("\n\nHill Climbing" + e);
 
