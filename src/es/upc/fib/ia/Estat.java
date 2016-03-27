@@ -189,9 +189,27 @@ public class Estat {
         this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
-    //TODO: classe Estat / DistFSHeuristicFunction?
+    public double getAvg(){
+        double avg = 0.;
+        for (int serv : this.servidors.keySet()) {
+            avg += this.servidors.get(serv).temps;
+        }
+        avg /= this.servidors.size();
+        return avg;
+    }
+
+    public double getSumaTemps() {
+        double suma = 0.;
+        for (int serv : this.servidors.keySet()) {
+            suma += this.servidors.get(serv).temps;
+        }
+        return suma;
+    }
+
+    //TODO: classe Estat / DistFSHeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
+        //double avg = getAvg();
         double avg = 0;
         for (int serv : this.servidors.keySet()) {
             avg += this.servidors.get(serv).temps;
