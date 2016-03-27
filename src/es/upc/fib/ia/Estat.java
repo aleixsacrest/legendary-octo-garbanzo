@@ -237,14 +237,15 @@ public class Estat {
 
     // temps actual del pitjor servidor
     public double getTempsPitjorServidor() {
-        double mitjaTemps = -1.;
+        double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
-                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+            if (t == -1. || this.servidors.get(s).temps > t) {
+                t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
                 id = s;
             }
         }
+        //return t
         return servidors.get(id).temps;
     }
 
@@ -264,6 +265,7 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
+        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
         return ret;
     }
 }
