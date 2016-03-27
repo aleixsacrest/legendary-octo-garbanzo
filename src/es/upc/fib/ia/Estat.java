@@ -167,7 +167,6 @@ public class Estat {
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
-        this.peticions[IDpeticio] = IDnou;
         this.servidors.get(IDantic).p.remove(IDpeticio);
         this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
         this.servidors.get(IDnou).p.add(IDpeticio);
@@ -190,27 +189,9 @@ public class Estat {
         this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
-    public double getAvg(){
-        double avg = 0.;
-        for (int serv : this.servidors.keySet()) {
-            avg += this.servidors.get(serv).temps;
-        }
-        avg /= this.servidors.size();
-        return avg;
-    }
-
-    public double getSumaTemps() {
-        double suma = 0.;
-        for (int serv : this.servidors.keySet()) {
-            suma += this.servidors.get(serv).temps;
-        }
-        return suma;
-    }
-
-    //TODO: classe Estat / DistFSHeuristicFunction
+    //TODO: classe Estat / DistFSHeuristicFunction?
     public double factorDeCarrega() {
         double ret = 0;
-        //double avg = getAvg();
         double avg = 0;
         for (int serv : this.servidors.keySet()) {
             avg += this.servidors.get(serv).temps;
@@ -223,19 +204,30 @@ public class Estat {
         return ret;
     }
 
-    //TODO: pitjor = mitja temps de transmissio mes alta
-    public double getTempsPitjorSevidor() {
-        double t = -1.;
+    //pitjor = mitja temps de transmissio mes alta
+    public double getAvgPitjorServidor() {
+        double mitjaTemps = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (t == -1. || this.servidors.get(s).temps > t) {
-                if (this.servidors.get(s).p.size() == 0) t = 0;
-                else t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
+                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
                 id = s;
             }
         }
-        //TODO: return t??
-        return this.servidors.get(id).temps;
+        return mitjaTemps;
+    }
+
+    // temps actual del pitjor servidor
+    public double getTempsPitjorServidor() {
+        double mitjaTemps = -1.;
+        Integer id = 0;
+        for (int s : this.servidors.keySet()) {
+            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
+                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+                id = s;
+            }
+        }
+        return servidors.get(id).temps;
     }
 
     public double tempsTransmissio() {
@@ -252,9 +244,8 @@ public class Estat {
             ret += s + " " + this.servidors.get(s).p.size() + '\n';
         }*/
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
-        ret += "\ntemps pitjor servidor: " + this.getTempsPitjorSevidor();
+        ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
-        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
         return ret;
     }
 }

@@ -19,6 +19,7 @@ public class DistFSDemo extends Component {
             Requests req = new Requests(200, 5, 1);
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
+            DistFSHeuristicFunction hf = new DistFSHeuristicFunction();
 
             int ini = inicialitzacio();
             if (ini == 0) {
@@ -28,10 +29,16 @@ public class DistFSDemo extends Component {
             else if (ini == 2) e.initRandom();
             else throw new Exception("error de selecció");
             System.out.print("Estat inicial" + e);
+            double h = hf.getHeuristicValue(e);
+            System.out.println("\n" + String.valueOf(h));
 
 
             DistFSHillClimbing(e);
             System.out.print("\n\nHill Climbing" + e);
+
+
+            h = hf.getHeuristicValue(e);
+            System.out.println("\n" + String.valueOf(h));
 
         } catch (Exception e) {
             e.printStackTrace();
