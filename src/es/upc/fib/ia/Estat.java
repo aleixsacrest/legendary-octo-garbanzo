@@ -102,6 +102,7 @@ public class Estat {
             this.servidors.get(loc).p.add(i);
             this.servidors.get(loc).temps += this.S.tranmissionTime(loc, this.R.getRequest(i)[0]);
             this.peticions[i] = loc;
+
         }
         if (this.S.size() != this.servidors.size()) omplirServidors();
         FdC0 = factorDeCarrega();
@@ -188,9 +189,27 @@ public class Estat {
         this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
-    //TODO: classe Estat / DistFSHeuristicFunction?
+    public double getAvg(){
+        double avg = 0.;
+        for (int serv : this.servidors.keySet()) {
+            avg += this.servidors.get(serv).temps;
+        }
+        avg /= this.servidors.size();
+        return avg;
+    }
+
+    public double getSumaTemps() {
+        double suma = 0.;
+        for (int serv : this.servidors.keySet()) {
+            suma += this.servidors.get(serv).temps;
+        }
+        return suma;
+    }
+
+    //TODO: classe Estat / DistFSHeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
+        //double avg = getAvg();
         double avg = 0;
         for (int serv : this.servidors.keySet()) {
             avg += this.servidors.get(serv).temps;
@@ -218,14 +237,15 @@ public class Estat {
 
     // temps actual del pitjor servidor
     public double getTempsPitjorServidor() {
-        double mitjaTemps = -1.;
+        double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
-                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+            if (t == -1. || this.servidors.get(s).temps > t) {
+                t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
                 id = s;
             }
         }
+        //return t
         return servidors.get(id).temps;
     }
 
@@ -245,6 +265,7 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
+        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
         return ret;
     }
 }
