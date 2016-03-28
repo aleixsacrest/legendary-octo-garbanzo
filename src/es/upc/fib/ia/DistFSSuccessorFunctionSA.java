@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Msacrest on 29/03/2016.
+ * Created by aleixsacrest on 29/03/2016.
  */
 public class DistFSSuccessorFunctionSA implements SuccessorFunction {
 
