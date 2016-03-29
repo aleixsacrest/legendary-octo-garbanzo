@@ -30,7 +30,8 @@ public class DistFSDemo extends Component {
             System.out.print("Estat inicial" + e);
 
             DistFSHillClimbing(e);
-            System.out.print("\n\nHill Climbing" + e);
+            //Retrona el mateix estat, no es canvia l'objecte, se'n generen de nous
+            //System.out.print("\n\nHill Climbing" + e);
 
         } catch (Exception e) {
             e.printStackTrace();

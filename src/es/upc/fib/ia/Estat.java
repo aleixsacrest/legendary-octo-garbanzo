@@ -23,7 +23,7 @@ public class Estat {
     }
 
     public Estat(Estat state) {
-        //servidors = new HashMap<Integer, InfoServ>(state.getServidors()); //TODO
+        //servidors = new HashMap<Integer, InfoServ>(state.getServidors());
         this.servidors = new HashMap<Integer, InfoServ>();
         for (int serv : state.getServidors().keySet()) {
             this.servidors.put(serv, new InfoServ(state.getServidors().get(serv)));
@@ -227,7 +227,7 @@ public class Estat {
     }
 
     //pitjor = mitja temps de transmissio mes alta
-    public double getAvgPitjorServidor() {
+    public double getAvgPitjorServidor() { //TODO: control div 0
         double mitjaTemps = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
@@ -240,7 +240,7 @@ public class Estat {
     }
 
     // temps actual del pitjor servidor
-    public double getTempsPitjorServidor() {
+    public double getTempsPitjorServidor() {//TODO: mitja? + control div 0
         double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
@@ -259,6 +259,19 @@ public class Estat {
             ret += inf.temps;
         }
         return ret;
+    }
+
+    @Override
+    public boolean equals(Object e) {
+        Estat other = (Estat) e;
+        if (this.servidors.size() != other.getServidors().size()) return false;
+        for (int k : this.servidors.keySet()) {
+            if (!other.getServidors().containsKey(k)) return false;
+            if (!this.servidors.get(k).equals(other.getServidors().get(k))) return false;
+        }
+        for (int i = 0; i < this.peticions.length; ++i)
+            if (this.peticions[i] != other.getPeticions()[i]) return false;
+        return true;
     }
 
     public String toString() {

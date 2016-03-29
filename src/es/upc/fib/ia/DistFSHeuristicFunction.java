@@ -46,7 +46,8 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //volem minimitzar el temps del pitjor servidor, per tant, quan més proper sigui al avg del temps dels altres millor,
         //voldra dir que estem satisfent la clausula a. Si es major al avg, restarà punts al valor de H, si es igual
         //no en sumara, i si es menor fara que sigui major
-        double hv_pitjorServidor = avg - state.getTempsPitjorServidor();
+
+        //double hv_pitjorServidor = avg - state.getTempsPitjorServidor();
 
 
 

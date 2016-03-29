@@ -18,4 +18,12 @@ public class InfoServ {
         this.p = new HashSet<Integer>(inf.p);
         this.temps = inf.temps;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        InfoServ inf = (InfoServ) o;
+        if (!this.p.equals(inf.p)) return false;
+        if (!this.temps.equals(inf.temps)) return false;
+        return true;
+    }
 }
