@@ -13,4 +13,9 @@ public class InfoServ {
         this.p = s;
         this.temps = d;
     }
+
+    public InfoServ(InfoServ inf) {
+        this.p = new HashSet<Integer>(inf.p);
+        this.temps = inf.temps;
+    }
 }

@@ -21,8 +21,8 @@ public class DistFSSuccessorFunction implements SuccessorFunction {
 
         for (int i = 0; i < state.getPeticions().length; ++i) {
             for (int j : state.getServidorsArxiu(i)) {
-                //Estat newState = new Estat(state);
-                Estat newState = (Estat) s;
+                Estat newState = new Estat(state);
+                //Estat newState = (Estat) s;
                 if (state.getServei(i) != j) {
                     newState.canviarAssignacio(i, j);
                     //TODO: perque es fa servir?

@@ -23,7 +23,11 @@ public class Estat {
     }
 
     public Estat(Estat state) {
-        servidors = new HashMap<Integer, InfoServ>(state.getServidors());
+        //servidors = new HashMap<Integer, InfoServ>(state.getServidors()); //TODO
+        this.servidors = new HashMap<Integer, InfoServ>();
+        for (int serv : state.getServidors().keySet()) {
+            this.servidors.put(serv, new InfoServ(state.getServidors().get(serv)));
+        }
         this.S = state.getS();
         this.R = state.getR();
         this.FdC0 = state.getFdC0();
