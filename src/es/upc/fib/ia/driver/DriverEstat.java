@@ -2,18 +2,11 @@ package es.upc.fib.ia.driver;
 
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
-import com.sun.net.httpserver.Authenticator;
 import es.upc.fib.ia.DistFSHeuristicFunction;
 import es.upc.fib.ia.DistFSSuccessorFunction;
 import es.upc.fib.ia.Estat;
-import es.upc.fib.ia.InfoServ;
-import es.upc.fib.ia.aima.search.framework.HeuristicFunction;
 import es.upc.fib.ia.aima.search.framework.Successor;
 
-import javax.sound.midi.MidiDevice;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 /**
