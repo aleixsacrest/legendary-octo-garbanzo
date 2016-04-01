@@ -15,7 +15,6 @@ import java.util.List;
 public class DriverEstat {
     public static void main(String[] args) {
         try {
-            //pet
             Requests req = new Requests(200, 5, 1);
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
