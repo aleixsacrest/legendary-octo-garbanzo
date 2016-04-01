@@ -28,12 +28,12 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //quan més proper sigui al inicial (pitjor), menys valor tindrà l'heurístic
         //quan més proper sigui a 0, més valor tindrà l'heurístic
         //el maxim es quan la variancia es 0 --> hv_fdc = FdC0
-        double hv_fdc = FdC;
+        double hv_fdc = FdC / FdC0;
 
 
         //heuristic value temps:
         //mateix raonament que pel FdC
-        double hv_temps = temps;
+        double hv_temps = temps / temps0;
 
 
         //H es la funcio heuristica
