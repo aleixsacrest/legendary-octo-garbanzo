@@ -169,6 +169,7 @@ public class Estat {
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
+        this.peticions[IDpeticio] = IDnou;
         this.servidors.get(IDantic).p.remove(IDpeticio);
         this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
         this.servidors.get(IDnou).p.add(IDpeticio);

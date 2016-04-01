@@ -37,6 +37,9 @@ public class DistFSDemo extends Component {
             //Retrona el mateix estat, no es canvia l'objecte, se'n generen de nous
             //System.out.print("\n\nHill Climbing" + e);
 
+            e.initMinTemps();
+            System.out.println("\n" + e);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

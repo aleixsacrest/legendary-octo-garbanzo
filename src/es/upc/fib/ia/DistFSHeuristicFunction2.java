@@ -34,12 +34,17 @@ public class DistFSHeuristicFunction2 implements HeuristicFunction {
         //heuristic value temps:
         //mateix raonament que pel FdC
         double hv_temps = temps / temps0;
+        /*if (hv_temps > 1) hv_temps = 3;
+        hv_temps *= 370;
+        return (int) hv_temps;*/
+
+        return hv_temps;
 
 
         //H es la funcio heuristica
-        double H = (hv_fdc + hv_temps);
+        //double H = (hv_fdc + hv_temps);
 
-        return H;
+        //return hv_temps;
     }
 
 }
