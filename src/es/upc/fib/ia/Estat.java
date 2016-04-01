@@ -210,7 +210,6 @@ public class Estat {
         return suma;
     }
 
-    //TODO: classe Estat / DistFSHeuristicFunction
     public double factorDeCarrega() {
         double ret = 0;
         //double avg = getAvg();
