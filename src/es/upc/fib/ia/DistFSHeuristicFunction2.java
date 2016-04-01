@@ -12,7 +12,7 @@ import es.upc.fib.ia.aima.search.framework.HeuristicFunction;
  *  b. Compromis entre factor de carrega i temps total de transmissions.
  */
 
-public class DistFSHeuristicFunction implements HeuristicFunction {
+public class DistFSHeuristicFunction2 implements HeuristicFunction {
 
 
     //1. Minimitzem clausula b, pero aixo donaria moltes messetes (dolent pel HC) --> funcio de variancia i sumatori temps.
@@ -38,22 +38,6 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
 
         //H es la funcio heuristica
         double H = (hv_fdc + hv_temps);
-
-
-
-        double avg = state.getAvg();
-        //heuristic value pitjorServidor
-        //volem minimitzar el temps del pitjor servidor, per tant, quan més proper sigui al avg del temps dels altres millor,
-        //voldra dir que estem satisfent la clausula a. Si es major al avg, restarà punts al valor de H, si es igual
-        //no en sumara, i si es menor fara que sigui major
-
-        //double hv_pitjorServidor = avg - state.getTempsPitjorServidor();
-
-
-
-        //H += (int) hv_pitjorServidor; //si el temps del pitjor servidor es major a l'avg, donem menys puntuacio
-
-
 
         return H;
     }

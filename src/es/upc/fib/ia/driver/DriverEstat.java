@@ -2,7 +2,7 @@ package es.upc.fib.ia.driver;
 
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
-import es.upc.fib.ia.DistFSHeuristicFunction;
+import es.upc.fib.ia.DistFSHeuristicFunction2;
 import es.upc.fib.ia.DistFSSuccessorFunction;
 import es.upc.fib.ia.Estat;
 import es.upc.fib.ia.aima.search.framework.Successor;
@@ -26,7 +26,7 @@ public class DriverEstat {
             String s = "";
             for (Object o : arr) {
                 Estat state = (Estat) ((Successor) o).getState();
-                double hV = (new DistFSHeuristicFunction()).getHeuristicValue(state);
+                double hV = (new DistFSHeuristicFunction2()).getHeuristicValue(state);
                 if (hV == 0.0) {
                     int i = 2+2;
                     s = "pet";

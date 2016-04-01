@@ -17,7 +17,7 @@ public class DistFSSuccessorFunction implements SuccessorFunction {
     public List getSuccessors(Object s){
         Estat state = (Estat) s;
         ArrayList retVal = new ArrayList();
-        DistFSHeuristicFunction hf = new DistFSHeuristicFunction();
+        DistFSHeuristicFunction2 hf = new DistFSHeuristicFunction2();
 
         for (int i = 0; i < state.getPeticions().length; ++i) {
             for (int j : state.getServidorsArxiu(i)) {

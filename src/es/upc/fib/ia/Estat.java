@@ -1,8 +1,6 @@
 package es.upc.fib.ia;
 
 import IA.DistFS.*;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-import com.sun.xml.internal.fastinfoset.algorithm.IntegerEncodingAlgorithm;
 
 import java.util.*;
 
@@ -281,7 +279,7 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
-        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
+        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction2()).getHeuristicValue(this);
         return ret;
     }
 }
