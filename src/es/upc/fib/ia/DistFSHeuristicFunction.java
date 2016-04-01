@@ -8,13 +8,22 @@ import es.upc.fib.ia.aima.search.framework.HeuristicFunction;
  *
  *                          Que s'ha de mesurar?
  *                          --------------------
- *  a. Minimitzar el temps de transmissio dels fitxers del servidor que triga mes.
- *  b. Compromis entre factor de carrega i temps total de transmissions.
+ *  H1. Minimitzar el temps de transmissio dels fitxers del servidor que triga mes.
+ *  H2. Compromis entre factor de carrega i temps total de transmissions.
  */
 
 public class DistFSHeuristicFunction implements HeuristicFunction {
 
+    public double getHeuristicValue(Object s)
+    {
+        Estat state = (Estat) s;
+        double H = 32715.0 - state.getTempsPitjorServidor();
+        //System.out.println(H);
 
+        return 1;
+    }
+
+    /*
     //1. Minimitzem clausula b, pero aixo donaria moltes messetes (dolent pel HC) --> funcio de variancia i sumatori temps.
     //2. Minimitzem clausula a -> desempat de les messetes --> diferencia entre avg i temps del pitjor.
     public double getHeuristicValue(Object s) { //TODO: he canviat de int a double
@@ -57,5 +66,6 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
 
         return H;
     }
+*/
 
 }
