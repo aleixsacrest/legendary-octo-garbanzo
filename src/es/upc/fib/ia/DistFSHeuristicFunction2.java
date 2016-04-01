@@ -28,7 +28,7 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         //quan més proper sigui al inicial (pitjor), menys valor tindrà l'heurístic
         //quan més proper sigui a 0, més valor tindrà l'heurístic
         //el maxim es quan la variancia es 0 --> hv_fdc = FdC0
-        double hv_fdc = FdC ;
+        double hv_fdc = FdC / FdC0;
 
 
         //heuristic value temps:
@@ -39,20 +39,13 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
             if (temps > temps0/(1.+i/1000.)) break;
             hv_temps--;
         }*/
+        double hv_temps = temps / temps0;
+        /*if (hv_temps > 1) hv_temps = 3;
+        hv_temps *= 370;
+        return (int) hv_temps;*/
 
+        return hv_temps;
 
-        /*if (temps >= temps0)           hv_temps = 10;
-        else if (temps > temps0/1.001) hv_temps = 9;
-        else if (temps > temps0/1.002) hv_temps = 8;
-        else if (temps > temps0/1.003) hv_temps = 7;
-        else if (temps > temps0/1.004) hv_temps = 6;
-        else if (temps > temps0/1.005) hv_temps = 5;
-        else if (temps > temps0/1.006) hv_temps = 4;
-        else if (temps > temps0/1.007) hv_temps = 3;
-        else if (temps > temps0/1.008) hv_temps = 2;
-        else if (temps > temps0/1.009) hv_temps = 1;
-        else if (temps > temps0/1.01)  hv_
-        else                           hv_temps = 0;*/
 
         //H es la funcio heuristica
         double H = (hv_fdc + hv_temps);

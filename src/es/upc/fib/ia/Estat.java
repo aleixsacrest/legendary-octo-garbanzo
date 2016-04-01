@@ -1,8 +1,6 @@
 package es.upc.fib.ia;
 
 import IA.DistFS.*;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-import com.sun.xml.internal.fastinfoset.algorithm.IntegerEncodingAlgorithm;
 
 import java.util.*;
 
@@ -171,6 +169,7 @@ public class Estat {
 
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
+        this.peticions[IDpeticio] = IDnou;
         this.servidors.get(IDantic).p.remove(IDpeticio);
         this.servidors.get(IDantic).temps -= this.S.tranmissionTime(IDantic, this.R.getRequest(IDpeticio)[0]);
         this.servidors.get(IDnou).p.add(IDpeticio);
@@ -281,7 +280,7 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
-        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction()).getHeuristicValue(this);
+        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction2()).getHeuristicValue(this);
         return ret;
     }
 }

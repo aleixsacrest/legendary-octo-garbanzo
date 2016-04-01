@@ -16,7 +16,7 @@ public class DistFSSuccessorFunctionSA implements SuccessorFunction {
     public List getSuccessors(Object s) {
         ArrayList retVal = new ArrayList();
         Estat state = (Estat) s;
-        DistFSHeuristicFunction hf = new DistFSHeuristicFunction();
+        DistFSHeuristicFunction2 hf = new DistFSHeuristicFunction2();
         Random myRandom = new Random();
         int IDpet, nouServ;
 
