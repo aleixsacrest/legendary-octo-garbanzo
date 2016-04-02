@@ -67,7 +67,7 @@ public class DistFSDemo extends Component {
     private static void DistFSHillClimbing (Estat estat) {
         try {
 
-            Problem problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            Problem problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();

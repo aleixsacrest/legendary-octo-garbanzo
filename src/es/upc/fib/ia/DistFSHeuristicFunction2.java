@@ -12,7 +12,7 @@ import es.upc.fib.ia.aima.search.framework.HeuristicFunction;
  *  b. Compromis entre factor de carrega i temps total de transmissions.
  */
 
-public class DistFSHeuristicFunction implements HeuristicFunction {
+public class DistFSHeuristicFunction2 implements HeuristicFunction {
 
 
     //1. Minimitzem clausula b, pero aixo donaria moltes messetes (dolent pel HC) --> funcio de variancia i sumatori temps.
@@ -33,13 +33,13 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
 
         //heuristic value temps:
         //mateix raonament que pel FdC
-        double hv_temps = 1000;
+        double hv_temps = 500;
         boolean a = false;
-        /*for (float i = 1; i < 1001; ++i) {
+        for (float i = 1; i < 501; ++i) {
             if (temps > temps0/(1.+i/1000.)) break;
             hv_temps--;
-        }*/
-        double hv_temps = temps / temps0;
+        }
+        //double hv_temps = temps / temps0;
         /*if (hv_temps > 1) hv_temps = 3;
         hv_temps *= 370;
         return (int) hv_temps;*/
@@ -48,7 +48,7 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
 
 
         //H es la funcio heuristica
-        double H = (hv_fdc + hv_temps);
+        /*double H = (hv_fdc + hv_temps);
 
 
 
@@ -66,7 +66,7 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
 
 
 
-        return FdC;
+        return FdC;*/
     }
 
 }

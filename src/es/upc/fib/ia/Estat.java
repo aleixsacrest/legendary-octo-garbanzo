@@ -15,6 +15,7 @@ public class Estat {
 
     private double FdC0;    //valor pitjor de FdC = valor inicial
     private double temps0;  //valor pitjor de temps = valor inicial
+    private double t_pitjor0; //valor pitjor de temps de pitjor servidor = valor inicial
 
     public Estat() {
         servidors = new HashMap<Integer, InfoServ>();
@@ -30,6 +31,7 @@ public class Estat {
         this.R = state.getR();
         this.FdC0 = state.getFdC0();
         this.temps0 = state.getTemps0();
+        this.t_pitjor0 = state.getTPijtor0();
         this.peticions = new int[this.R.size()];
         for (int i = 0; i < peticions.length; ++i)
             this.peticions[i] = state.getPeticions()[i];
@@ -59,13 +61,14 @@ public class Estat {
                 if (s == -1) throw new Exception("no s'ha trobat cap servidor");
                 this.peticions[i] = s;
                 this.servidors.get(s).p.add(i);
-                this.servidors.get(s).temps += min;
+                this.servidors.get(s).temps = min;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     public void initEqCarrega() {
@@ -93,6 +96,7 @@ public class Estat {
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     public void initRandom() {
@@ -109,6 +113,7 @@ public class Estat {
         if (this.S.size() != this.servidors.size()) omplirServidors();
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     private void omplirServidors() {
@@ -164,6 +169,8 @@ public class Estat {
     public double getFdC0() { return this.FdC0; }
 
     public double getTemps0() { return this.temps0; }
+
+    public double getTPijtor0() { return this.t_pitjor0; }
 
     public Set<Integer> getServidorsArxiu(int IDpet) { return this.S.fileLocations(this.R.getRequest(IDpet)[1]); }
 
@@ -263,7 +270,7 @@ public class Estat {
     }
 
     //pitjor = mitja temps de transmissio mes alta
-    public double getAvgPitjorServidor() { //TODO: control div 0
+    /*public double getAvgPitjorServidor() { //TODO: control div 0
         double mitjaTemps = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
@@ -273,20 +280,21 @@ public class Estat {
             }
         }
         return mitjaTemps;
-    }
+    }*/
 
     // temps actual del pitjor servidor
-    public double getTempsPitjorServidor() {//TODO: mitja? + control div 0
+    public double getTempsPitjorServidor() {
         double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
-            if (t == -1. || this.servidors.get(s).temps > t) {
-                t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
-                id = s;
+            if (this.servidors.get(s).p.size() != 0) {
+                if (t == -1. || this.servidors.get(s).temps > t) {
+                    t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+                    id = s;
+                }
             }
         }
-        //return t
-        return servidors.get(id).temps;
+        return t;
     }
 
     public double tempsTransmissio() {
