@@ -61,7 +61,7 @@ public class Estat {
                 if (s == -1) throw new Exception("no s'ha trobat cap servidor");
                 this.peticions[i] = s;
                 this.servidors.get(s).p.add(i);
-                this.servidors.get(s).temps = min;
+                this.servidors.get(s).temps += min; //TODO
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

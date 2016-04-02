@@ -85,7 +85,7 @@ public class DistFSDemo extends Component {
     }
 
     public static int heuristicF() {
-        Object[] possibilities = {"min temps + factor de carrega", "minimitzar pitjor servidor"};
+        Object[] possibilities = {"heuristic2:\nmin temps + factor de carrega", "heuristic1:\nminimitzar pitjor servidor"};
         Component c = new Component() {
             @Override
             public String getName() {
@@ -98,6 +98,7 @@ public class DistFSDemo extends Component {
                 null, possibilities, null);
         return st;
     }
+
 
     private static void DistFSHillClimbing (Estat estat, int heurF) {
         try {
@@ -121,8 +122,8 @@ public class DistFSDemo extends Component {
         try {
 
             Problem problem;
-            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
-            else problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            else problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
