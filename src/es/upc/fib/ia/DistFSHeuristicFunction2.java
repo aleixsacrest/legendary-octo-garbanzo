@@ -44,7 +44,7 @@ public class DistFSHeuristicFunction implements HeuristicFunction {
         hv_temps *= 370;
         return (int) hv_temps;*/
 
-        return hv_temps;
+        return hv_fdc;
 
 
         //H es la funcio heuristica

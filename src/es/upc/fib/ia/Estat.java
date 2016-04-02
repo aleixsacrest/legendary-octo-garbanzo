@@ -167,6 +167,44 @@ public class Estat {
 
     public Set<Integer> getServidorsArxiu(int IDpet) { return this.S.fileLocations(this.R.getRequest(IDpet)[1]); }
 
+    public void setTimeToMin() {
+        for (int serv : this.servidors.keySet()) {
+            this.servidors.get(serv).p = new HashSet<Integer>();
+            this.servidors.get(serv).temps = 0;
+        }
+        for (int i = 0; i < this.peticions.length; ++i) {
+            int[] r = this.R.getRequest(i);
+            int minT = -1;
+            int s = -1;
+            for (int candidat : this.S.fileLocations(r[1])) {
+                int t = this.S.tranmissionTime(candidat, r[0]);
+                if (minT == -1 || t < minT) {
+                    minT = t;
+                    s = candidat;
+                }
+            }
+            this.peticions[i] = s;
+            this.servidors.get(s).p.add(i);
+            this.servidors.get(s).temps += minT;
+        }
+    }
+
+    public int getMinPosTime() {
+        int retT = 0;
+        for (int i = 0; i < this.peticions.length; ++i) {
+            int[] r = this.R.getRequest(i);
+            int minT = -1;
+            for (int candidat : this.S.fileLocations(r[1])) {
+                int t = this.S.tranmissionTime(candidat, r[0]);
+                if (minT == -1 || t < minT) {
+                    minT = t;
+                }
+            }
+            retT += minT;
+        }
+        return retT;
+    }
+
     public void canviarAssignacio(int IDpeticio, int IDnou) {
         int IDantic = this.peticions[IDpeticio];
         this.peticions[IDpeticio] = IDnou;
