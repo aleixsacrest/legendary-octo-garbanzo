@@ -5,6 +5,7 @@ import es.upc.fib.ia.aima.search.framework.Problem;
 import es.upc.fib.ia.aima.search.framework.Search;
 import es.upc.fib.ia.aima.search.framework.SearchAgent;
 import es.upc.fib.ia.aima.search.informed.HillClimbingSearch;
+import es.upc.fib.ia.aima.search.informed.SimulatedAnnealingSearch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,8 @@ public class DistFSDemo extends Component {
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
 
+            int alg = algorisme();
+
             int ini = inicialitzacio();
             if (ini == 0) {
                 e.initMinTemps();
@@ -33,12 +36,10 @@ public class DistFSDemo extends Component {
             else throw new Exception("error de selecció");
             System.out.print("Estat inicial" + e);
 
-            DistFSHillClimbing(e);
+            if (alg == 0) DistFSHillClimbing(e);
+            else DistFSSimulatedAnnealing(e);
 
             System.out.println("\nmin temps possible " + e.getMinPosTime());
-            e = new Estat(serv, req);
-            e.initEqCarrega();
-            System.out.println(e + "\n");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,11 +65,42 @@ public class DistFSDemo extends Component {
         return st;
     }
 
+    public static int algorisme() {
+        Object[] possibilities = {"Hill Climbing", "Simulated Annealing"};
+        Component c = new Component() {
+            @Override
+            public String getName() {
+                return super.getName();
+            }
+        };
+        int st = (int) JOptionPane.showOptionDialog(
+                c, "Escull l'algorisme a utilitzar",
+                "algorisme", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, possibilities, null);
+        return st;
+    }
+
     private static void DistFSHillClimbing (Estat estat) {
         try {
 
             Problem problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new HillClimbingSearch();
+            SearchAgent agent = new SearchAgent(problem, search);
+            System.out.println();
+            printActions(agent.getActions());
+            System.out.println("---");
+            printInstrumentation(agent.getInstrumentation());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void DistFSSimulatedAnnealing (Estat estat) {
+        try {
+
+            Problem problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            Search search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
             printActions(agent.getActions());
@@ -93,7 +125,7 @@ public class DistFSDemo extends Component {
 
     private static void printActions(java.util.List actions) {
         for(int i = 0; i < actions.size(); ++i) {
-            String action = (String)actions.get(i);
+            String action = actions.get(i).toString();
             System.out.println(action);
         }
 

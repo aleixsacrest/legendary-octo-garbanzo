@@ -19,7 +19,7 @@ import java.util.List;
 public class DriverEstat {
     public static void main(String[] args) {
         try {
-            /*Requests req = new Requests(200, 5, 1);
+            Requests req = new Requests(200, 5, 1);
             Servers serv = new Servers(50, 5, 1);
             Estat e = new Estat(serv, req);
             e.initMinTemps();
@@ -41,9 +41,9 @@ public class DriverEstat {
                 }
             }
             System.out.println(h);
-            System.out.println(s);*/
+            System.out.println(s);
 
-            ArrayList<Integer[]> arr = new ArrayList<Integer[]>();
+            /*ArrayList<Integer[]> arr = new ArrayList<Integer[]>();
             Integer[] ii = {1,1};
             arr.add(ii);
             Integer[] jj = {1,2};
@@ -52,7 +52,7 @@ public class DriverEstat {
             arr.add(jj);
             ComparadorCarregar cmp = new ComparadorCarregar();
             Collections.sort(arr, cmp);
-            for (Integer[] in : arr) {System.out.print(in[0]); System.out.println(in[1]);}
+            for (Integer[] in : arr) {System.out.print(in[0]); System.out.println(in[1]);}*/
 
             System.out.println("fin");
         } catch (Exception e) {

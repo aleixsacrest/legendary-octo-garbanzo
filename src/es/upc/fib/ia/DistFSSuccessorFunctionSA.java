@@ -31,7 +31,7 @@ public class DistFSSuccessorFunctionSA implements SuccessorFunction {
         newState.canviarAssignacio(IDpet, nouServ);
 
         double hValue = hf.getHeuristicValue(newState);
-        String S = "CANVI ASSIGNACIO " + IDpet + ": del Servidor " + state.getServei(IDpet) + " al " + nouServ + " amb cost: " + hValue;
+        String S = "CANVI ASSIGNACIO " + IDpet + ": del Servidor " + state.getServei(IDpet) + " al " + nouServ + newState;
 
         retVal.add(new Successor(S, newState));
         return retVal;
