@@ -2,15 +2,11 @@ package es.upc.fib.ia.driver;
 
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
-import es.upc.fib.ia.ComparadorCarregar;
 import es.upc.fib.ia.DistFSHeuristicFunction2;
-import es.upc.fib.ia.DistFSSuccessorFunction;
+import es.upc.fib.ia.DistFSSuccessorFunctionHC;
 import es.upc.fib.ia.Estat;
 import es.upc.fib.ia.aima.search.framework.Successor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +20,7 @@ public class DriverEstat {
             Estat e = new Estat(serv, req);
             e.initMinTemps();
 
-            DistFSSuccessorFunction succ = new DistFSSuccessorFunction();
+            DistFSSuccessorFunctionHC succ = new DistFSSuccessorFunctionHC();
             List arr = succ.getSuccessors(e);
             double h = -1;
             String s = "";

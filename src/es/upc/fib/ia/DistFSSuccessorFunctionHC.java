@@ -10,9 +10,7 @@ import java.util.List;
  * Created by alexmiro on 15/3/16.
  */
 
-//TODO: nomes s'implementa l'operador de canviar assignacio + successorfunction x SA
-
-public class DistFSSuccessorFunction implements SuccessorFunction {
+public class DistFSSuccessorFunctionHC implements SuccessorFunction {
 
     public List getSuccessors(Object s){
         Estat state = (Estat) s;

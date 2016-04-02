@@ -103,8 +103,8 @@ public class DistFSDemo extends Component {
         try {
 
             Problem problem;
-            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
-            else problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            else problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
@@ -121,8 +121,8 @@ public class DistFSDemo extends Component {
         try {
 
             Problem problem;
-            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
-            else problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            else problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
