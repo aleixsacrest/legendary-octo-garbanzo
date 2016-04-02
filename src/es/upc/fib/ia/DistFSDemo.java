@@ -1,9 +1,7 @@
 package es.upc.fib.ia;
 
 import IA.DistFS.*;
-import es.upc.fib.ia.aima.search.framework.Problem;
-import es.upc.fib.ia.aima.search.framework.Search;
-import es.upc.fib.ia.aima.search.framework.SearchAgent;
+import es.upc.fib.ia.aima.search.framework.*;
 import es.upc.fib.ia.aima.search.informed.HillClimbingSearch;
 import es.upc.fib.ia.aima.search.informed.SimulatedAnnealingSearch;
 
@@ -30,6 +28,9 @@ public class DistFSDemo extends Component {
             int heurF = heuristicF();
             if (heurF != 0 && heurF != 1) throw new Exception("error de selecció");
 
+            int succeF = successorF();
+            if (succeF != 0 && succeF != 1) throw new Exception("error de selecció");
+
             int ini = inicialitzacio();
             if (ini == 0) {
                 e.initMinTemps();
@@ -39,8 +40,8 @@ public class DistFSDemo extends Component {
             else throw new Exception("error de selecció");
             System.out.print("Estat inicial" + e);
 
-            if (alg == 0) DistFSHillClimbing(e, heurF);
-            else if (alg == 1) DistFSSimulatedAnnealing(e, heurF);
+            if (alg == 0) DistFSHillClimbing(e, heurF, succeF);
+            else if (alg == 1) DistFSSimulatedAnnealing(e, heurF, succeF);
             else throw new Exception("error de selecció");
 
             System.out.println("\nmin temps possible " + e.getMinPosTime());
@@ -99,13 +100,33 @@ public class DistFSDemo extends Component {
         return st;
     }
 
+    public static int successorF() {
+        Object[] possibilities = {"SuccessorFunction (canviar)", "SuccessorFunction2 (canviar+intercanviar)"};
+        Component c = new Component() {
+            @Override
+            public String getName() {
+                return super.getName();
+            }
+        };
+        int st = (int) JOptionPane.showOptionDialog(
+                c, "Escull la successorfunction a utilitzar",
+                "succesF", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, possibilities, null);
+        return st;
+    }
 
-    private static void DistFSHillClimbing (Estat estat, int heurF) {
+
+    private static void DistFSHillClimbing (Estat estat, int heurF, int succeFunc) {
         try {
 
             Problem problem;
-            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
-            else problem = new Problem(estat, new DistFSSuccessorFunctionHC(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            HeuristicFunction heur;
+            SuccessorFunction succe;
+            if (heurF == 0) heur = new DistFSHeuristicFunction2();
+            else heur = new DistFSHeuristicFunction1();
+            if (succeFunc == 0) succe = new DistFSSuccessorFunctionHC();
+            else succe = new DistFSSuccessorFunctionHC2();
+            problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
@@ -118,12 +139,17 @@ public class DistFSDemo extends Component {
         }
     }
 
-    private static void DistFSSimulatedAnnealing (Estat estat, int heurF) {
+    private static void DistFSSimulatedAnnealing (Estat estat, int heurF, int succeFunc) {
         try {
 
             Problem problem;
-            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
-            else problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            HeuristicFunction heur;
+            SuccessorFunction succe;
+            if (heurF == 0) heur = new DistFSHeuristicFunction2();
+            else heur = new DistFSHeuristicFunction1();
+            if (succeFunc == 0) succe = new DistFSSuccessorFunctionSA();
+            else succe = new DistFSSuccessorFunctionSA2();
+            problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
