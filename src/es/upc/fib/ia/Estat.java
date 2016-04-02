@@ -221,6 +221,16 @@ public class Estat {
         this.servidors.get(IDnou).temps += this.S.tranmissionTime(IDnou, this.R.getRequest(IDpeticio)[0]);
     }
 
+    public void canviarAssignacioS(int servNou, int pet) {
+        int[] req = this.R.getRequest(pet);
+        int servAntic = this.peticions[pet];
+        this.servidors.get(servNou).temps += this.S.tranmissionTime(servNou, req[0]);
+        this.servidors.get(servNou).p.add(pet);
+        this.servidors.get(servAntic).temps -= this.S.tranmissionTime(servAntic, req[0]);
+        this.servidors.get(servAntic).p.remove(pet);
+        this.peticions[pet] = servNou;
+    }
+
     public void intervanviarAssignacions(int IDpet1, int IDpet2) {
         int IDserv1 = peticions[IDpet1];
         int IDserv2 = peticions[IDpet2];
