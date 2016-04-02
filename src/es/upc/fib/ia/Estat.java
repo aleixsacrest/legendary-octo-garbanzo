@@ -68,7 +68,7 @@ public class Estat {
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getAvgPitjorServidor();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     public void initEqCarrega() {
@@ -96,7 +96,7 @@ public class Estat {
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getAvgPitjorServidor();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     public void initRandom() {
@@ -113,7 +113,7 @@ public class Estat {
         if (this.S.size() != this.servidors.size()) omplirServidors();
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getAvgPitjorServidor();
+        t_pitjor0 = getTempsPitjorServidor();
     }
 
     private void omplirServidors() {
