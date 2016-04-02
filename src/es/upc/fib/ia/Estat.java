@@ -327,7 +327,8 @@ public class Estat {
         ret += "\nfactor de carrega: " + this.factorDeCarrega();
         ret += "\ntemps pitjor servidor: " + this.getTempsPitjorServidor();
         ret += "\ntemps de transmissio: " + this.tempsTransmissio();
-        ret += "\nvalor de l'heuristic: " + (new DistFSHeuristicFunction2()).getHeuristicValue(this);
+        ret += "\nvalor de l'heuristic1: " + (new DistFSHeuristicFunction1()).getHeuristicValue(this);
+        ret += "\nvalor de l'heuristic2: " + (new DistFSHeuristicFunction2()).getHeuristicValue(this);
         return ret;
     }
 }
