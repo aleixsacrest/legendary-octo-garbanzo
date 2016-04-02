@@ -269,19 +269,6 @@ public class Estat {
         return ret;
     }
 
-    //pitjor = mitja temps de transmissio mes alta
-    /*public double getAvgPitjorServidor() { //TODO: control div 0
-        double mitjaTemps = -1.;
-        Integer id = 0;
-        for (int s : this.servidors.keySet()) {
-            if (mitjaTemps == -1. || this.servidors.get(s).temps > mitjaTemps) {
-                mitjaTemps = this.servidors.get(s).temps / this.servidors.get(s).p.size();
-                id = s;
-            }
-        }
-        return mitjaTemps;
-    }*/
-
     // temps actual del pitjor servidor
     public double getAvgPitjorServidor() {
         double t = -1.;

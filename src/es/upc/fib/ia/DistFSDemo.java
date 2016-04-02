@@ -27,6 +27,9 @@ public class DistFSDemo extends Component {
 
             int alg = algorisme();
 
+            int heurF = heuristicF();
+            if (heurF != 0 && heurF != 1) throw new Exception("error de selecció");
+
             int ini = inicialitzacio();
             if (ini == 0) {
                 e.initMinTemps();
@@ -36,8 +39,9 @@ public class DistFSDemo extends Component {
             else throw new Exception("error de selecció");
             System.out.print("Estat inicial" + e);
 
-            if (alg == 0) DistFSHillClimbing(e);
-            else DistFSSimulatedAnnealing(e);
+            if (alg == 0) DistFSHillClimbing(e, heurF);
+            else if (alg == 1) DistFSSimulatedAnnealing(e, heurF);
+            else throw new Exception("error de selecció");
 
             System.out.println("\nmin temps possible " + e.getMinPosTime());
 
@@ -80,10 +84,27 @@ public class DistFSDemo extends Component {
         return st;
     }
 
-    private static void DistFSHillClimbing (Estat estat) {
+    public static int heuristicF() {
+        Object[] possibilities = {"min temps + factor de carrega", "minimitzar pitjor servidor"};
+        Component c = new Component() {
+            @Override
+            public String getName() {
+                return super.getName();
+            }
+        };
+        int st = (int) JOptionPane.showOptionDialog(
+                c, "Escull la funcio heuristica a utilitzar",
+                "heurF", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, possibilities, null);
+        return st;
+    }
+
+    private static void DistFSHillClimbing (Estat estat, int heurF) {
         try {
 
-            Problem problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
+            Problem problem;
+            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            else problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
@@ -96,10 +117,12 @@ public class DistFSDemo extends Component {
         }
     }
 
-    private static void DistFSSimulatedAnnealing (Estat estat) {
+    private static void DistFSSimulatedAnnealing (Estat estat, int heurF) {
         try {
 
-            Problem problem = new Problem(estat, new DistFSSuccessorFunctionSA(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            Problem problem;
+            if (heurF == 0) problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction2());
+            else problem = new Problem(estat, new DistFSSuccessorFunction(), new DistFSGoalTest(), new DistFSHeuristicFunction1());
             Search search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
