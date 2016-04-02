@@ -68,7 +68,7 @@ public class Estat {
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getTempsPitjorServidor();
+        t_pitjor0 = getAvgPitjorServidor();
     }
 
     public void initEqCarrega() {
@@ -96,7 +96,7 @@ public class Estat {
         }
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getTempsPitjorServidor();
+        t_pitjor0 = getAvgPitjorServidor();
     }
 
     public void initRandom() {
@@ -113,7 +113,7 @@ public class Estat {
         if (this.S.size() != this.servidors.size()) omplirServidors();
         FdC0 = factorDeCarrega();
         temps0 = tempsTransmissio();
-        t_pitjor0 = getTempsPitjorServidor();
+        t_pitjor0 = getAvgPitjorServidor();
     }
 
     private void omplirServidors() {
@@ -283,7 +283,7 @@ public class Estat {
     }*/
 
     // temps actual del pitjor servidor
-    public double getTempsPitjorServidor() {
+    public double getAvgPitjorServidor() {
         double t = -1.;
         Integer id = 0;
         for (int s : this.servidors.keySet()) {
@@ -295,6 +295,20 @@ public class Estat {
             }
         }
         return t;
+    }
+
+    public double getTempsPitjorServidor() {
+        double t = -1.;
+        Integer id = 0;
+        for (int s : this.servidors.keySet()) {
+            if (this.servidors.get(s).p.size() != 0) {
+                if (t == -1. || this.servidors.get(s).temps > t) {
+                    t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+                    id = s;
+                }
+            }
+        }
+        return this.servidors.get(id).temps;
     }
 
     public double tempsTransmissio() {
