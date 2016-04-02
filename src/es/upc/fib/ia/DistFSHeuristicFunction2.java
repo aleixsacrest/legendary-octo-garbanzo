@@ -33,40 +33,9 @@ public class DistFSHeuristicFunction2 implements HeuristicFunction {
 
         //heuristic value temps:
         //mateix raonament que pel FdC
-        double hv_temps = 500;
-        boolean a = false;
-        for (float i = 1; i < 501; ++i) {
-            if (temps > temps0/(1.+i/1000.)) break;
-            hv_temps--;
-        }
-        //double hv_temps = temps / temps0;
-        /*if (hv_temps > 1) hv_temps = 3;
-        hv_temps *= 370;
-        return (int) hv_temps;*/
+        double  hv_temps = temps / temps0;
 
         return hv_temps + hv_fdc;
-
-
-        //H es la funcio heuristica
-        /*double H = (hv_fdc + hv_temps);
-
-
-
-        double avg = state.getAvg();
-        //heuristic value pitjorServidor
-        //volem minimitzar el temps del pitjor servidor, per tant, quan més proper sigui al avg del temps dels altres millor,
-        //voldra dir que estem satisfent la clausula a. Si es major al avg, restarà punts al valor de H, si es igual
-        //no en sumara, i si es menor fara que sigui major
-
-        //double hv_pitjorServidor = avg - state.getTempsPitjorServidor();
-
-
-
-        //H += (int) hv_pitjorServidor; //si el temps del pitjor servidor es major a l'avg, donem menys puntuacio
-
-
-
-        return FdC;*/
     }
 
 }
