@@ -35,7 +35,7 @@ public class DistFSSuccessorFunctionSA2 implements SuccessorFunction{
         int opt = myRandom.nextInt(2);
 
         if (opt == 0) newState.canviarAssignacio(IDpet1, nouServ);
-        else newState.intervanviarAssignacions(IDpet1, IDpet2);
+        else newState.intercanviarAssignacions(IDpet1, IDpet2);
 
         double hValue = hf.getHeuristicValue(newState);
         String S = "CANVI ASSIGNACIO " + IDpet1 + ": del Servidor " + state.getServei(IDpet1) + " al " + nouServ + newState;

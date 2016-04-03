@@ -231,7 +231,7 @@ public class Estat {
         this.peticions[pet] = servNou;
     }
 
-    public void intervanviarAssignacions(int IDpet1, int IDpet2) {
+    public void intercanviarAssignacions(int IDpet1, int IDpet2) {
         int IDserv1 = peticions[IDpet1];
         int IDserv2 = peticions[IDpet2];
         this.peticions[IDpet1] = IDserv2;
@@ -327,6 +327,16 @@ public class Estat {
         for (int i = 0; i < this.peticions.length; ++i)
             if (this.peticions[i] != other.getPeticions()[i]) return false;
         return true;
+    }
+
+    public boolean intercanviPossible(int IDpet1, int IDpet2)
+    {
+        Set<Integer> fl = S.fileLocations(IDpet1);
+        for (Integer i : fl) {
+            if (i == peticions[IDpet2])
+                return true;
+        }
+        return false;
     }
 
     public String toString() {
