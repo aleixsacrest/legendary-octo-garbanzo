@@ -247,15 +247,6 @@ public class Estat {
         this.servidors.get(IDserv1).temps += this.S.tranmissionTime(IDserv1, this.R.getRequest(IDpet2)[0]);
     }
 
-    public double getAvg(){
-        double avg = 0.;
-        for (int serv : this.servidors.keySet()) {
-            avg += this.servidors.get(serv).temps;
-        }
-        avg /= this.servidors.size();
-        return avg;
-    }
-
     public double getSumaTemps() {
         double suma = 0.;
         for (int serv : this.servidors.keySet()) {
