@@ -10,24 +10,33 @@ import es.upc.fib.ia.Estat;
 public class Experiment3 extends Experiment{
     public static void main(String[] args) {
         try {
-            for (int k = 20; k >= 0; k -= 2) {
-                int llavor = (int) (Math.random() * 100.);
-                Requests req = new Requests(200, 5, 1);
-                Servers serv = new Servers(50, 5, 1);
+            int llavor = (int) (Math.random() * 100.);
+            Requests req = new Requests(200, 5, llavor);
+            Servers serv = new Servers(50, 5, llavor);
+            Estat e1 = new Estat(serv, req);
+            e1.initMinTemps();
 
-                Estat e1 = new Estat(serv, req);
-                e1.initMinTemps();
-                System.out.println("heuristic inicial: " + e1.toString().split(";")[1]);
+            System.out.println("heuristic inicial: " + e1.toString().split(";")[1] + "\n");
+
+            double hV_millor = Double.parseDouble(e1.toString().split(";")[1]);
+            int k_millor = -1;
+
+            for (int k = 20; k >= 0; k -= 1) {
                 double heur = 0;
-                for (int i = 0; i < 10; ++i) {
-
-
-                    //System.out.print("Estat inicial" + e1);
+                for (int i = 0; i < 10; ++i)
                     heur += DistFSSimulatedAnnealing(e1, 1, 0, false, true, 10000, 100, k, 0.005D);
-                }
                 heur /= 10;
-                System.out.println("k = " + k + " heuristic: " + heur + "\n");
+                if (k_millor == -1 || heur < hV_millor) {
+                    k_millor = k;
+                    hV_millor = heur;
+                }
+
+                System.out.println("k = " + k + " heuristic: " + heur);
             }
+
+            System.out.println("\n millor k: " + k_millor);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
