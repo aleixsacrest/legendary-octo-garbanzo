@@ -322,10 +322,21 @@ public class Estat {
 
     public boolean intercanviPossible(int IDpet1, int IDpet2)
     {
-        Set<Integer> fl = S.fileLocations(IDpet1); //TODO: fileLocations(fitxer), comprovar a la viceversa
+        //Set<Integer> fl = S.fileLocations(IDpet1); //TODO: fileLocations(fitxer), comprovar a la viceversa CREC QUE FET!
+        Set<Integer> fl = this.getServidorsArxiu(IDpet1);
+        boolean found = false;
         for (Integer i : fl) {
-            if (i == peticions[IDpet2])
-                return true;
+            if (i == peticions[IDpet2]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) return false;
+        Set<Integer> fr = this.getServidorsArxiu(IDpet2);
+        for (Integer i : fr) {
+            if (i == peticions[IDpet2]) {
+                return false;
+            }
         }
         return false;
     }
