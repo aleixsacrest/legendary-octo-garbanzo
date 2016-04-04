@@ -28,7 +28,7 @@ public class DistFSSuccessorFunctionSA2 implements SuccessorFunction{
 
         do {
             IDpet2 = myRandom.nextInt(state.getPeticions().length);
-        } while (IDpet1 == IDpet2);
+        } while (IDpet1 == IDpet2 && !state.intercanviPossible(IDpet1,IDpet2));
 
         Estat newState = new Estat(state);
 
@@ -38,8 +38,9 @@ public class DistFSSuccessorFunctionSA2 implements SuccessorFunction{
         else newState.intercanviarAssignacions(IDpet1, IDpet2);
 
         double hValue = hf.getHeuristicValue(newState);
-        String S = "CANVI ASSIGNACIO " + IDpet1 + ": del Servidor " + state.getServei(IDpet1) + " al " + nouServ + newState;
-
+        String S;
+        if (opt == 0) S = "CANVI ASSIGNACIO " + IDpet1 + ": del Servidor " + state.getServei(IDpet1) + " al " + nouServ + newState;
+        else S = "INTERCANVI ASSIGNACIONS " + IDpet1 + " i " + IDpet2 + newState;
         retVal.add(new Successor(S, newState));
         return retVal;
     }
