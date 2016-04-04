@@ -5,7 +5,7 @@ import IA.DistFS.Servers;
 import es.upc.fib.ia.Estat;
 
 /**
- * Created by Msacrest on 04/04/2016.
+ * Created by aleixsacres on 04/04/2016.
  */
 public class Experiment3 extends Experiment{
     public static void main(String[] args) {
