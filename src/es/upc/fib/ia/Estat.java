@@ -212,7 +212,7 @@ public class Estat {
         return retT;
     }
 
-    public void canviarAssignacio(int IDpeticio, int IDnou) {
+    public void canviarAssignacio(int IDpeticio, int IDnou) { //TODO: comprovar si es pot fer
         int IDantic = this.peticions[IDpeticio];
         this.peticions[IDpeticio] = IDnou;
         this.servidors.get(IDantic).p.remove(IDpeticio);
@@ -322,7 +322,7 @@ public class Estat {
 
     public boolean intercanviPossible(int IDpet1, int IDpet2)
     {
-        Set<Integer> fl = S.fileLocations(IDpet1);
+        Set<Integer> fl = S.fileLocations(IDpet1); //TODO: fileLocations(fitxer), comprovar a la viceversa
         for (Integer i : fl) {
             if (i == peticions[IDpet2])
                 return true;

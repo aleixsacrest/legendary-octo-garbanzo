@@ -23,7 +23,7 @@ public class DistFSSuccessorFunctionSA implements SuccessorFunction {
         IDpet = myRandom.nextInt(state.getPeticions().length);
 
         do {
-            nouServ = (Integer) state.getServidors().keySet().toArray()[myRandom.nextInt(state.getServidors().size())];
+            nouServ = (Integer) state.getServidorsArxiu(IDpet).toArray()[myRandom.nextInt(state.getServidorsArxiu(IDpet).size())];
         } while (state.getServei(IDpet) == nouServ);
 
         Estat newState = new Estat(state);
