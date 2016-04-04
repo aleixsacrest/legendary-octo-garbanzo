@@ -13,10 +13,9 @@ import java.util.*;
 /**
  * Created by alexmiro on 03/04/2016.
  */
-public class Experiment1 extends Component {
+public class Experiment1 extends Experiment {
     public static void main(String[] args) {
         try {
-            Experiment ex1 = new Experiment();
             for (int i = 0; i < 10; ++i) {
 
                 int llavor = (int) 28;
@@ -36,13 +35,13 @@ public class Experiment1 extends Component {
                 System.out.println("\nHC: HF1 + SF1 (sense intercanviarAssig)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e1);
-                ex1.DistFSHillClimbing(e1, 1, 0);
+                DistFSHillClimbing(e1, 1, 0);
 
                 //HC: HF1 + SF2 (amb intercanviarAssig)
                 System.out.println("\nHC: HF1 + SF2 (amb intercanviarAssig)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e2);
-                ex1.DistFSHillClimbing(e2, 1, 1);
+                DistFSHillClimbing(e2, 1, 1);
             }
 
 

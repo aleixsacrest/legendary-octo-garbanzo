@@ -13,10 +13,9 @@ import java.util.*;
 /**
  * Created by alexmiro on 03/04/2016.
  */
-public class Experiment2 extends Component {
+public class Experiment2 extends Experiment{
     public static void main(String[] args) {
         try {
-            Experiment ex2 = new Experiment();
             for (int i = 0; i < 10; ++i) {
 
                 int llavor = (int) (Math.random() * 100.);
@@ -33,7 +32,7 @@ public class Experiment2 extends Component {
                 System.out.println("\nHC: HF1 (initRandom)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e1);
-                ex2.DistFSHillClimbing(e1, 1, 0);
+                DistFSHillClimbing(e1, 1, 0);
 
                 //InitTemps
                 Estat e3 = new Estat(serv, req);
@@ -42,7 +41,7 @@ public class Experiment2 extends Component {
                 System.out.println("\nHC: HF1 (initMinTemps)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e3);
-                ex2.DistFSHillClimbing(e3, 1, 0);
+                DistFSHillClimbing(e3, 1, 0);
 
                 //InitFdC
                 Estat e5 = new Estat(serv, req);
@@ -51,7 +50,7 @@ public class Experiment2 extends Component {
                 System.out.println("\nHC: HF1 (initEqCarrega)");
                 System.out.println("--------------------------------------");
                 System.out.print("Estat inicial" + e5);
-                ex2.DistFSHillClimbing(e5, 1, 0);
+                DistFSHillClimbing(e5, 1, 0);
             }
 
         } catch (Exception e) {
