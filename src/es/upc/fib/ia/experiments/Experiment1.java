@@ -18,7 +18,7 @@ public class Experiment1 extends Experiment {
         try {
             for (int i = 0; i < 10; ++i) {
 
-                int llavor = (int) 28;
+                int llavor = (int) (Math.random() * 100.);
                 Requests req = new Requests(200, 5, llavor);
                 Servers serv = new Servers(50, 5, llavor);
 
