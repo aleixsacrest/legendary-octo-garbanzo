@@ -10,22 +10,23 @@ import es.upc.fib.ia.Estat;
 public class Experiment3 extends Experiment{
     public static void main(String[] args) {
         try {
-            for (int i = 0; i < 10; ++i) {
-
+            for (int k = 20; k >= 0; k -= 2) {
                 int llavor = (int) (Math.random() * 100.);
-                Requests req = new Requests(200, 5, llavor);
-                Servers serv = new Servers(50, 5, llavor);
+                Requests req = new Requests(200, 5, 1);
+                Servers serv = new Servers(50, 5, 1);
 
-                System.out.println("LLAVOR:" + llavor);
-                System.out.println("===================");
-
-                //InitRandom
                 Estat e1 = new Estat(serv, req);
                 e1.initMinTemps();
-                System.out.println("\nHC: HF1 (initRandom)");
-                System.out.println("---------------------------------------");
-                System.out.print("Estat inicial" + e1);
-                DistFSSimulatedAnnealing(e1, 1, 0, false, 3, 3, 3, 3);
+                System.out.println("heuristic inicial: " + e1.toString().split(";")[1]);
+                double heur = 0;
+                for (int i = 0; i < 10; ++i) {
+
+
+                    //System.out.print("Estat inicial" + e1);
+                    heur += DistFSSimulatedAnnealing(e1, 1, 0, false, true, 10000, 100, k, 0.005D);
+                }
+                heur /= 10;
+                System.out.println("k = " + k + " heuristic: " + heur + "\n");
             }
 
         } catch (Exception e) {
