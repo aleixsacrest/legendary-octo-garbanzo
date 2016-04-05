@@ -45,7 +45,7 @@ public class Experiment extends Component {
             problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
-            System.out.println();
+            //System.out.println();
             ret = printActions(agent.getActions(), print);
             if (print) System.out.println("---");
             printInstrumentation(agent.getInstrumentation(), print);
@@ -75,6 +75,7 @@ public class Experiment extends Component {
 
             //intercanviar
             else succe = new DistFSSuccessorFunctionSA2();
+
             problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search;
             search = new SimulatedAnnealingSearch(steps,stiter,k,lamb);

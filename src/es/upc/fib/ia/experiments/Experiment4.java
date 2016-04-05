@@ -37,7 +37,7 @@ public class Experiment4 extends Experiment {
                     System.out.println("---------------------------------------");
                     System.out.print("Estat inicial" + e1);
                     long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 0);
+                    DistFSHillClimbing(e1, 1, 0, true);
                     temps1 += (System.currentTimeMillis() - startTime);
                 }
                 System.out.println("TEMPS EXEC (" + usuaris + " usuaris): " + (temps1/10.));
@@ -67,7 +67,7 @@ public class Experiment4 extends Experiment {
                     System.out.println("---------------------------------------");
                     System.out.print("Estat inicial" + e1);
                     long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 0);
+                    DistFSHillClimbing(e1, 1, 0, true);
                     temps2 += (System.currentTimeMillis() - startTime);
                 }
                 System.out.println("TEMPS EXEC (" + servidors + " servidors): " + (temps2/10.));

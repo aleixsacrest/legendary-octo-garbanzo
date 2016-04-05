@@ -35,13 +35,13 @@ public class Experiment1 extends Experiment {
                 System.out.println("\nHC: HF1 + SF1 (sense intercanviarAssig)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e1);
-                DistFSHillClimbing(e1, 1, 0);
+                DistFSHillClimbing(e1, 1, 0, true);
 
                 //HC: HF1 + SF2 (amb intercanviarAssig)
                 System.out.println("\nHC: HF1 + SF2 (amb intercanviarAssig)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e2);
-                DistFSHillClimbing(e2, 1, 1);
+                DistFSHillClimbing(e2, 1, 1, true);
             }
 
 

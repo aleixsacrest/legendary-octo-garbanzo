@@ -32,7 +32,7 @@ public class Experiment2 extends Experiment{
                 System.out.println("\nHC: HF1 (initRandom)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e1);
-                DistFSHillClimbing(e1, 1, 0);
+                DistFSHillClimbing(e1, 1, 0, true);
 
                 //InitTemps
                 Estat e3 = new Estat(serv, req);
@@ -41,7 +41,7 @@ public class Experiment2 extends Experiment{
                 System.out.println("\nHC: HF1 (initMinTemps)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e3);
-                DistFSHillClimbing(e3, 1, 0);
+                DistFSHillClimbing(e3, 1, 0, true);
 
                 //InitFdC
                 Estat e5 = new Estat(serv, req);
@@ -50,7 +50,7 @@ public class Experiment2 extends Experiment{
                 System.out.println("\nHC: HF1 (initEqCarrega)");
                 System.out.println("--------------------------------------");
                 System.out.print("Estat inicial" + e5);
-                DistFSHillClimbing(e5, 1, 0);
+                DistFSHillClimbing(e5, 1, 0, true);
             }
 
         } catch (Exception e) {
