@@ -22,7 +22,7 @@ public class Experiment extends Component {
         printTots = false;
     }
 
-    protected static double DistFSHillClimbing (Estat estat, int heurF, int succeFunc) {
+    protected static double DistFSHillClimbing (Estat estat, int heurF, int succeFunc, boolean print) {
         double ret = 0.;
         try {
 
@@ -46,9 +46,9 @@ public class Experiment extends Component {
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             System.out.println();
-            ret = printActions(agent.getActions(), true);
-            System.out.println("---");
-            printInstrumentation(agent.getInstrumentation(), true);
+            ret = printActions(agent.getActions(), print);
+            if (print) System.out.println("---");
+            printInstrumentation(agent.getInstrumentation(), print);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class Experiment extends Component {
         return ret;
     }
 
-    protected static double DistFSSimulatedAnnealing (Estat estat, int heurF, int succeFunc, boolean print, boolean paramsValids, int steps, int stiter, int k, double lamb) {
+    protected static double DistFSSimulatedAnnealing (Estat estat, int heurF, int succeFunc, boolean print, int steps, int stiter, int k, double lamb) {
         double ret = 0.;
         try {
 
@@ -77,8 +77,41 @@ public class Experiment extends Component {
             else succe = new DistFSSuccessorFunctionSA2();
             problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search;
-            if (paramsValids) search = new SimulatedAnnealingSearch(steps,stiter,k,lamb);
-            else search = new SimulatedAnnealingSearch();
+            search = new SimulatedAnnealingSearch(steps,stiter,k,lamb);
+            SearchAgent agent = new SearchAgent(problem, search);
+            if (print) System.out.println();
+            ret = printActions(agent.getActions(), print);
+            if (print) System.out.println("---");
+            printInstrumentation(agent.getInstrumentation(), print);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public static double DistFSSimulatedAnnealing(Estat estat, int heurF, int succeFunc, boolean print) {
+        double ret = 0.;
+        try {
+
+            Problem problem;
+            HeuristicFunction heur;
+            SuccessorFunction succe;
+
+            //temps + factor de carrega
+            if (heurF == 0) heur = new DistFSHeuristicFunction2();
+
+                //temps pitjor servidor
+            else heur = new DistFSHeuristicFunction1();
+
+            //canviar
+            if (succeFunc == 0) succe = new DistFSSuccessorFunctionSA();
+
+                //intercanviar
+            else succe = new DistFSSuccessorFunctionSA2();
+            problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
+            Search search;
+            search = new SimulatedAnnealingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
             if (print) System.out.println();
             ret = printActions(agent.getActions(), print);
@@ -104,7 +137,7 @@ public class Experiment extends Component {
 
     }
 
-    private static double printActions(java.util.List actions, boolean print) {
+    private static double printActions(java.util.List actions, boolean print) { //TODO: print diu si imprimir o no, i printTots si fals nomes imprimeix el final
         String[] arr = actions.get(actions.size()-1).toString().split(";");
         if (print) {
             if (printTots) {
