@@ -335,7 +335,7 @@ public class Estat {
         Set<Integer> fr = this.getServidorsArxiu(IDpet2);
         for (Integer i : fr) {
             if (i == peticions[IDpet2]) {
-                return false;
+                return true;
             }
         }
         return false;
