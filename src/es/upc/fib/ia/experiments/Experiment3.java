@@ -9,7 +9,7 @@ import es.upc.fib.ia.Estat;
  */
 public class Experiment3 extends Experiment{
     private static Estat e1;
-    private static int MAX_LEVEL = 3000;
+    private static int MAX_LEVEL = 5;
 
     public static void main(String[] args) {
         try {
@@ -23,7 +23,7 @@ public class Experiment3 extends Experiment{
 
             double hV_millor = Double.parseDouble(e1.toString().split(";")[1]);
 
-            int it_millor = -1;
+            /*int it_millor = -1;
 
             for (int it = 10000; it <= 50000; it += 10000) {
                 double heur = 0;
@@ -38,11 +38,11 @@ public class Experiment3 extends Experiment{
                 System.out.println("iteracions = " + it + " heuristic: " + heur);
             }
 
-            System.out.println("\n millor mitja-100 it: " + it_millor);
+            System.out.println("\n millor it: " + it_millor);*/
 
             double lambL = 0.0005, lambR = 0.01;
             int kL = 5, kR = 25;
-            //determinacioParametres(kL, kR, lambL, lambR, it_millor, 0);
+            determinacioParametres(kL, kR, lambL, lambR, 40000, 0);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,6 +50,7 @@ public class Experiment3 extends Experiment{
     }
 
     public static void determinacioParametres(int kL, int kR, double lambL, double lambR, int it, int level) {
+        System.out.println(level);
         int auxk = (kR+kL) / 2;
         double auxlamb = (lambR+lambL) / 2;
         double heurM = 0;
@@ -58,7 +59,7 @@ public class Experiment3 extends Experiment{
         heurM /= 10;
 
         if (level == MAX_LEVEL) {
-            System.out.println("k: " + auxk + " lambda: " + auxlamb + "\nlevel: " + level);
+            System.out.println("k: " + auxk + " lambda: " + auxlamb + " heuristic: " + heurM + "\nlevel: " + level);
             return;
         }
 
@@ -100,7 +101,7 @@ public class Experiment3 extends Experiment{
             hV = heur4;
         }
         if (millor == -1) {
-            System.out.println("k: " + auxk + " lambda: " + auxlamb + "\nlevel: " + level);
+            System.out.println("k: " + auxk + " lambda: " + auxlamb + " heuristic: " + hV + "\nlevel: " + level);
             return;
         }
         else if (millor == 1)
