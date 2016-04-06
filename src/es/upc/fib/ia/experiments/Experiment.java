@@ -71,10 +71,10 @@ public class Experiment extends Component {
             else heur = new DistFSHeuristicFunction1();
 
             //canviar
-            if (succeFunc == 0) succe = new DistFSSuccessorFunctionSA();
+            if (succeFunc == 0) succe = new DistFSSuccessorFunctionSA2();
 
             //intercanviar
-            else succe = new DistFSSuccessorFunctionSA2();
+            else succe = new DistFSSuccessorFunctionSA();
 
             problem = new Problem(estat, succe, new DistFSGoalTest(), heur);
             Search search;
