@@ -28,29 +28,26 @@ public class Experiment2 extends Experiment{
                 //InitRandom
                 Estat e1 = new Estat(serv, req);
                 e1.initRandom();
-                Estat e2 = new Estat(e1);
                 System.out.println("\nHC: HF1 (initRandom)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e1);
-                DistFSHillClimbing(e1, 1, 0, true);
+                DistFSHillClimbing(e1, 1, 1,true);
 
                 //InitTemps
                 Estat e3 = new Estat(serv, req);
                 e3.initMinTemps();
-                Estat e4 = new Estat(e3);
                 System.out.println("\nHC: HF1 (initMinTemps)");
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e3);
-                DistFSHillClimbing(e3, 1, 0, true);
+                DistFSHillClimbing(e3, 1, 1, true);
 
                 //InitFdC
                 Estat e5 = new Estat(serv, req);
                 e5.initEqCarrega();
-                Estat e6 = new Estat(e5);
                 System.out.println("\nHC: HF1 (initEqCarrega)");
                 System.out.println("--------------------------------------");
                 System.out.print("Estat inicial" + e5);
-                DistFSHillClimbing(e5, 1, 0, true);
+                DistFSHillClimbing(e5, 1, 1, true);
             }
 
         } catch (Exception e) {

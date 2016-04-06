@@ -291,12 +291,12 @@ public class Estat {
         for (int s : this.servidors.keySet()) {
             if (this.servidors.get(s).p.size() != 0) {
                 if (t == -1. || this.servidors.get(s).temps > t) {
-                    t = this.servidors.get(s).temps / this.servidors.get(s).p.size();
+                    t = this.servidors.get(s).temps;
                     id = s;
                 }
             }
         }
-        return this.servidors.get(id).temps;
+        return t;
     }
 
     public double tempsTransmissio() {
@@ -334,7 +334,7 @@ public class Estat {
         if (!found) return false;
         Set<Integer> fr = this.getServidorsArxiu(IDpet2);
         for (Integer i : fr) {
-            if (i == peticions[IDpet2]) {
+            if (i == peticions[IDpet1]) {
                 return true;
             }
         }

@@ -28,7 +28,7 @@ public class Experiment9 extends Component {
                 System.out.println("\niteracion numero #" + i);
                 System.out.println("---------------------------------------");
                 System.out.print("Estat inicial" + e);
-                DistFSHillClimbing(e, 1, 0);
+                DistFSHillClimbing(e, 1, 1);
                 long endTime = System.currentTimeMillis();
                 System.out.println("TEMPS EXEC: " + (endTime-startTime));
                 mitja_temps += (endTime-startTime);
