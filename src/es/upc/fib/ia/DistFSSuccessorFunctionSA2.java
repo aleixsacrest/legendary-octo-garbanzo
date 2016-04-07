@@ -42,6 +42,7 @@ public class DistFSSuccessorFunctionSA2 implements SuccessorFunction{
         if (opt == 0) S = "CANVI ASSIGNACIO " + IDpet1 + ": del Servidor " + state.getServei(IDpet1) + " al " + nouServ + newState;
         else S = "INTERCANVI ASSIGNACIONS " + IDpet1 + " i " + IDpet2 + newState;
         retVal.add(new Successor(S, newState));
+        //System.out.println(newState.toString().split(";")[1]);
         return retVal;
     }
 }
