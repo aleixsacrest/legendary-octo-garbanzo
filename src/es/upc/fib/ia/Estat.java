@@ -10,12 +10,12 @@ import java.util.*;
 public class Estat {
     private HashMap<Integer, InfoServ> servidors;
     private int[] peticions;
-    private Servers S;
-    private Requests R;
+    private static Servers S;
+    private static Requests R;
 
-    private double FdC0;    //valor pitjor de FdC = valor inicial
-    private double temps0;  //valor pitjor de temps = valor inicial
-    private double t_pitjor0; //valor pitjor de temps de pitjor servidor = valor inicial
+    private static double FdC0;    //valor pitjor de FdC = valor inicial
+    private static double temps0;  //valor pitjor de temps = valor inicial
+    private static double t_pitjor0; //valor pitjor de temps de pitjor servidor = valor inicial
 
     public Estat() {
         servidors = new HashMap<Integer, InfoServ>();
@@ -27,11 +27,6 @@ public class Estat {
         for (int serv : state.getServidors().keySet()) {
             this.servidors.put(serv, new InfoServ(state.getServidors().get(serv)));
         }
-        this.S = state.getS();
-        this.R = state.getR();
-        this.FdC0 = state.getFdC0();
-        this.temps0 = state.getTemps0();
-        this.t_pitjor0 = state.getTPijtor0();
         this.peticions = new int[this.R.size()];
         for (int i = 0; i < peticions.length; ++i)
             this.peticions[i] = state.getPeticions()[i];

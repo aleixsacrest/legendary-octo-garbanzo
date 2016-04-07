@@ -40,7 +40,7 @@ public class Experiment4 extends Experiment {
             for (int servidors = 50; servidors <= 50 * 30 ; servidors += 50) {
                 //estudi2
                 long temps2 = 0;
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < 1; ++i) {
                     int llavor = (int) (Math.random() * 100.);
                     Requests req = new Requests(200, 5, llavor);
                     Servers serv = new Servers(servidors, 5, llavor);
