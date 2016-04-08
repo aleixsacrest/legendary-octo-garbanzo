@@ -17,65 +17,28 @@ import java.util.*;
 public class Experiment5 extends Experiment {
     public static void main(String[] args) {
         try {
-            boolean tendencia = false;
-            for (int usuaris = 100; !tendencia; usuaris += 50) {
-                //estudi1
-                long temps1 = 0;
-                for (int i = 0; i < 1; ++i) {
-                    int llavor = (int) (Math.random() * 100.);
-                    Requests req = new Requests(usuaris, 5, llavor);
-                    Servers serv = new Servers(50, 5, llavor);
+            for (int i = 0; i < 10; ++i) {
+                int llavor = (int) (Math.random() * 100.);
+                Requests req = new Requests(200, 5, llavor);
+                Servers serv = new Servers(50, 5, llavor);
 
-                    System.out.println("LLAVOR:" + llavor);
-                    System.out.println("===================");
+                System.out.println("LLAVOR:" + llavor);
+                System.out.println("===================");
 
-                    Estat e1 = new Estat(serv, req);
-                    e1.initMinTemps();
+                Estat e = new Estat(serv, req);
+                e.initMinTemps();
+                System.out.println("\nHC: HF1");
+                System.out.println("---------------------------------------");
+                long startTime = System.currentTimeMillis();
+                DistFSHillClimbing(e, 1, 1, true);
+                System.out.println("TEMPS CERCA1 = " + (System.currentTimeMillis() - startTime));
 
-                    //HC: HF1 + SF1 (sense intercanviarAssig)
-                    System.out.println("\nHC: HF1 + SF1 (sense intercanviarAssig)");
-                    System.out.println("---------------------------------------");
-                    System.out.print("Estat inicial" + e1);
-                    long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 0, true);
-                    temps1 += (System.currentTimeMillis() - startTime);
-                }
-                System.out.println("TEMPS EXEC (" + usuaris + " usuaris): " + (temps1/10.));
-                Scanner keyboard = new Scanner(System.in);
-                System.out.println("Tendencia? s/n");
-                String t = keyboard.next();
-                if (t == "s")
-                    tendencia = true;
-            }
-            tendencia = false;
-            for (int servidors = 100; !tendencia; servidors += 50) {
-                //estudi2
-                long temps2 = 0;
-                for (int i = 0; i < 10; ++i) {
-                    int llavor = (int) (Math.random() * 100.);
-                    Requests req = new Requests(200, 5, llavor);
-                    Servers serv = new Servers(servidors, 5, llavor);
+                System.out.println("\nHC: HF2");
+                System.out.println("---------------------------------------");
+                startTime = System.currentTimeMillis();
+                DistFSHillClimbing(e, 0, 1, true);
+                System.out.println("TEMPS CERCA2 = " + (System.currentTimeMillis() - startTime));
 
-                    System.out.println("LLAVOR:" + llavor);
-                    System.out.println("===================");
-
-                    Estat e1 = new Estat(serv, req);
-                    e1.initMinTemps();
-
-                    //HC: HF1 + SF1 (sense intercanviarAssig)
-                    System.out.println("\nHC: HF1 + SF1 (sense intercanviarAssig)");
-                    System.out.println("---------------------------------------");
-                    System.out.print("Estat inicial" + e1);
-                    long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 0, true);
-                    temps2 += (System.currentTimeMillis() - startTime);
-                }
-                System.out.println("TEMPS EXEC (" + servidors + " servidors): " + (temps2/10.));
-                Scanner keyboard = new Scanner(System.in);
-                System.out.println("Tendencia? s/n");
-                String t = keyboard.next();
-                if (t == "s")
-                    tendencia = true;
             }
         } catch (Exception e) {
             e.printStackTrace();

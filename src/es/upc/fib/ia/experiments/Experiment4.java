@@ -18,7 +18,7 @@ public class Experiment4 extends Experiment {
     public static void main(String[] args) {
         try {
             boolean tendencia = false;
-            for (int usuaris = 100; usuaris <= 100 * 10; usuaris += 100) {
+            for (int usuaris = 700; usuaris <= 100 * 10; usuaris += 100) {
                 //estudi1
                 long temps1 = 0;
                 for (int i = 0; i < 10; ++i) {
@@ -30,7 +30,7 @@ public class Experiment4 extends Experiment {
                     e1.initMinTemps();
 
                     long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 1, false);
+                    DistFSHillClimbing(e1, 1, 0, false);
                     temps1 += (System.currentTimeMillis() - startTime);
                 }
                 System.out.println("TEMPS CERCA (" + usuaris + " usuaris): " + (temps1/10.));
@@ -49,7 +49,7 @@ public class Experiment4 extends Experiment {
                     e1.initMinTemps();
 
                     long startTime = System.currentTimeMillis();
-                    DistFSHillClimbing(e1, 1, 1, false);
+                    DistFSHillClimbing(e1, 1, 0, false);
                     temps2 += (System.currentTimeMillis() - startTime);
                 }
                 System.out.println("TEMPS CERCA (" + servidors + " servidors): " + (temps2/10.));
