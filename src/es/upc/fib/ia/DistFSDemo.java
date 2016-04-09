@@ -4,6 +4,7 @@ import IA.DistFS.*;
 import es.upc.fib.ia.aima.search.framework.*;
 import es.upc.fib.ia.aima.search.informed.HillClimbingSearch;
 import es.upc.fib.ia.aima.search.informed.SimulatedAnnealingSearch;
+import es.upc.fib.ia.experiments.Experiment;
 
 import javax.swing.*;
 import java.awt.*;

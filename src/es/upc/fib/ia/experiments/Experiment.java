@@ -147,7 +147,7 @@ public class Experiment extends Component {
                     System.out.println(action);
                 }
             } else {
-                System.out.println("\nFinal\n" + arr[0]);
+                System.out.println("\nEstat Final\n" + arr[0]);
             }
         }
         return Double.parseDouble(arr[1]);

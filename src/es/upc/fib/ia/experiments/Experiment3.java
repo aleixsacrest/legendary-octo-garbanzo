@@ -41,7 +41,7 @@ public class Experiment3 extends Experiment{
             System.out.println("\n millor it: " + it_millor);*/
 
             double lambL = 0.002, lambR = 0.01;
-            int kL = 5, kR = 50;
+            int kL = 1, kR = 100;
             System.out.println("10000 iteracions");
             determinacioParametres(kL, kR, lambL, lambR, 10000, 0);
 
