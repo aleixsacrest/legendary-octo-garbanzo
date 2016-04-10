@@ -347,6 +347,7 @@ public class Estat {
         ret += "\nvalor de l'heuristic1: " + (new DistFSHeuristicFunction1()).getHeuristicValue(this);
         ret += "\nvalor de l'heuristic2: " + (new DistFSHeuristicFunction2()).getHeuristicValue(this);
         ret += "\n;" + (new DistFSHeuristicFunction1()).getHeuristicValue(this);
+        //ret += "\n;" + this.tempsTransmissio();
         return ret;
     }
 }

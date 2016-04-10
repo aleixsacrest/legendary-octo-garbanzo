@@ -47,7 +47,7 @@ public class DistFSSuccessorFunctionSA2 implements SuccessorFunction{
         retVal.add(new Successor(S, newState));
         String pr = newState.toString().split(";")[1] + ";";
         if (i%100 == 0) pr += '\n';
-        System.out.println(state.toString().split(";")[1]);
+        //System.out.println(state.toString().split(";")[1]);
         return retVal;
     }
 }
