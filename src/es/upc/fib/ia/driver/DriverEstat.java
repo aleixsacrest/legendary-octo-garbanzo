@@ -21,8 +21,9 @@ public class DriverEstat extends Experiment{
             Estat e = new Estat(serv, req);
             e.initMinTemps();
 
-            double r = DistFSSimulatedAnnealing(e, 1, 0, false, 50000, 100, 9, 0.00436);
-            System.out.println(r);
+            double r = DistFSSimulatedAnnealing(e, 1, 0, false, 300000, 5, 50, 0.002375);
+            //DistFSHillClimbing(e, 1, 0, true);
+            System.out.println("\nEstat final\n" + r);
 
             System.out.println("fin");
         } catch (Exception e) {

@@ -23,23 +23,6 @@ public class Experiment3 extends Experiment{
 
             double hV_millor = Double.parseDouble(e1.toString().split(";")[1]);
 
-            /*int it_millor = -1;
-
-            for (int it = 10000; it <= 50000; it += 10000) {
-                double heur = 0;
-                for (int i = 0; i < 100; ++i)
-                    heur += DistFSSimulatedAnnealing(e1, 1, 0, false, it, 100, 5, 0.005D);
-                heur /= 100;
-                if (it_millor == -1 || heur < hV_millor) {
-                    it_millor = it;
-                    hV_millor = heur;
-                }
-
-                System.out.println("iteracions = " + it + " heuristic: " + heur);
-            }
-
-            System.out.println("\n millor it: " + it_millor);*/
-
             double lambL = 0.002, lambR = 0.01;
             int kL = 1, kR = 100;
             System.out.println("10000 iteracions");
@@ -60,6 +43,12 @@ public class Experiment3 extends Experiment{
             lambL = 0.00025;
             System.out.println("50000 iteracions");
             determinacioParametres(kL, kR, lambL, lambR, 50000, 0);
+
+            System.out.println("100000 iteracions");
+            determinacioParametres(kL, kR, lambL, lambR, 100000, 0);
+
+            System.out.println("300000 iteracions");
+            determinacioParametres(kL, kR, lambL, lambR, 300000, 0);
 
             System.out.println("heuristic inicial: " + e1.toString().split(";")[1] + "\n");
 
