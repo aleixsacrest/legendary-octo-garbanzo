@@ -65,7 +65,7 @@ public class Experiment3 extends Experiment{
         //System.out.println("\n\n\nk: " + auxk + " lambda: " + auxlamb);
         double heurM = 0;
         for (int i = 0; i < nIterMitja; ++i)
-            heurM += DistFSSimulatedAnnealing(e1, 1, 0, print, it, 100, auxk, auxlamb);
+            heurM += DistFSSimulatedAnnealing(e1, 1, 1, print, it, 100, auxk, auxlamb);
         heurM /= nIterMitja;
 
         if (level == MAX_LEVEL) {
@@ -81,7 +81,7 @@ public class Experiment3 extends Experiment{
         //System.out.println("\n\n\nk: " + auxkL + " lambda: " + auxlambL);
         double heur1 = 0;
         for (int i = 0; i < nIterMitja; ++i)
-            heur1 += DistFSSimulatedAnnealing(e1, 1, 0, print, it, 100, auxkL, auxlambL);
+            heur1 += DistFSSimulatedAnnealing(e1, 1, 1, print, it, 100, auxkL, auxlambL);
         heur1 /= nIterMitja;
         if (heur1 < hV) {
             millor = 1;
@@ -90,7 +90,7 @@ public class Experiment3 extends Experiment{
         //System.out.println("\n\n\nk: " + auxkL + " lambda: " + auxlambR);
         double heur2 = 0;
         for (int i = 0; i < nIterMitja; ++i)
-            heur2 += DistFSSimulatedAnnealing(e1, 1, 0, print, it, 100, auxkL, auxlambR);
+            heur2 += DistFSSimulatedAnnealing(e1, 1, 1, print, it, 100, auxkL, auxlambR);
         heur2 /= nIterMitja;
         if (heur2 < hV) {
             millor = 2;
@@ -99,7 +99,7 @@ public class Experiment3 extends Experiment{
         //System.out.println("\n\n\nk: " + auxkR + " lambda: " + auxlambL);
         double heur3 = 0;
         for (int i = 0; i < nIterMitja; ++i)
-            heur3 += DistFSSimulatedAnnealing(e1, 1, 0, print, it, 100, auxkR, auxlambL);
+            heur3 += DistFSSimulatedAnnealing(e1, 1, 1, print, it, 100, auxkR, auxlambL);
         heur3 /= nIterMitja;
         if (heur3 < hV) {
             millor = 3;
@@ -108,7 +108,7 @@ public class Experiment3 extends Experiment{
         //System.out.println("\n\n\nk: " + auxkR + " lambda: " + auxlambR);
         double heur4 = 0;
         for (int i = 0; i < nIterMitja; ++i)
-            heur4 += DistFSSimulatedAnnealing(e1, 1, 0, print, it, 100, auxkR, auxlambR);
+            heur4 += DistFSSimulatedAnnealing(e1, 1, 1, print, it, 100, auxkR, auxlambR);
         heur4 /= nIterMitja;
         if (heur4 < hV) {
             millor = 4;
