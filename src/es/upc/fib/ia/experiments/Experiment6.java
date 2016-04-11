@@ -24,7 +24,7 @@ public class Experiment6 extends Experiment {
                 System.out.println("\nHC: HF1");
                 System.out.println("---------------------------------------");
                 long startTime = System.currentTimeMillis();
-                double tt = DistFSHillClimbing(e, 1, 1, false);
+                double tt = DistFSHillClimbing(e, 1, 1, true);
                 //System.out.print(tt + ";");
                 System.out.println("TEMPS CERCA1 = " + (System.currentTimeMillis() - startTime));
                 double temps1 = (System.currentTimeMillis() - startTime);
@@ -33,7 +33,7 @@ public class Experiment6 extends Experiment {
                 System.out.println("\nSA: HF1");
                 System.out.println("---------------------------------------");
                 startTime = System.currentTimeMillis();
-                tt = DistFSSimulatedAnnealing(e, 1, 1, false, 300000, 100, 54, 0.002375);
+                tt = DistFSSimulatedAnnealing(e, 1, 1, true, 300000, 100, 54, 0.002375);
                 //System.out.print(tt + ";");
                 System.out.println("TEMPS CERCA1 = " + (System.currentTimeMillis() - startTime));
                 double temps2 = (System.currentTimeMillis() - startTime);
@@ -42,7 +42,7 @@ public class Experiment6 extends Experiment {
                 System.out.println("\nHC: HF2");
                 System.out.println("---------------------------------------");
                 startTime = System.currentTimeMillis();
-                tt = DistFSHillClimbing(e, 0, 1, false);
+                tt = DistFSHillClimbing(e, 0, 1, true);
                 //System.out.print(tt + ";");
                 System.out.println("TEMPS CERCA2 = " + (System.currentTimeMillis() - startTime));
                 double temps3 = (System.currentTimeMillis() - startTime);
@@ -51,7 +51,7 @@ public class Experiment6 extends Experiment {
                 System.out.println("\nSA: HF2");
                 System.out.println("---------------------------------------");
                 startTime = System.currentTimeMillis();
-                tt = DistFSSimulatedAnnealing(e, 0, 1, false, 300000, 100, 54, 0.002375);
+                tt = DistFSSimulatedAnnealing(e, 0, 1, true, 300000, 100, 54, 0.002375);
                 //System.out.print(tt + ";");
                 System.out.println("TEMPS CERCA2 = " + (System.currentTimeMillis() - startTime));
                 double temps4 = (System.currentTimeMillis() - startTime);
